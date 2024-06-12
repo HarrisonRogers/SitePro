@@ -7,23 +7,30 @@ import Link from 'next/link'
 export default function Home() {
   return (
     <main>
-      <section className="max-w-6xl mx-auto px-4 sm:px-8 h-screen grid lg:grid-cols-[1fr,400px] items-center">
-        <div>
-          <h1 className="capitalize text-4xl md:text-7xl font-bold">
-            Site<span className="text-secondary">Pro</span>
+      <section className="max-w-6xl mx-auto px-4 sm:px-8 h-screen flex flex-col justify-center items-center">
+        <Image
+          src={BlackLogo}
+          alt="RBJ Logo"
+          className="block mb-4"
+          width={400}
+        />
+        <div className="text-center border-t-2 pt-4">
+          <h1 className="capitalize text-4xl lg:text-5xl font-bold">
+            Asset Management
           </h1>
-          <p className="mt-4">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid
-            fugiat enim ad unde voluptatem expedita perspiciatis officia in,
-            porro velit dignissimos at sunt nostrum sint reiciendis fugit qui
-            magni natus sit? Assumenda quo nemo vero obcaecati quos incidunt
-            corporis iure?
+          <p className="mt-4 mx-auto max-w-xl">
+            efficiently manage your property assets. easily request maintenance
+            services for your properties, ensuring timely and effective upkeep.
+            Additionally, detailed information about subcontractors who
+            installed various assets, particularly when the work was not
+            performed by the main building company, RBJ. readily available,
+            facilitating seamless coordination and communication for property
+            maintenance and management.
           </p>
-          <Button asChild className="mt-4" color="white">
+          <Button asChild className="mt-4">
             <Link href={'/sites'}>Get Started</Link>
           </Button>
         </div>
-        <Image src={BlackLogo} alt="RBJ Logo" className="hidden lg:block" />
       </section>
     </main>
   )
