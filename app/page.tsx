@@ -18,7 +18,7 @@ export default function Home() {
           <h1 className="capitalize text-4xl lg:text-5xl font-bold">
             Asset Management
           </h1>
-          <p className="mt-4 mx-auto max-w-xl">
+          <p className="mt-4 mx-auto max-w-4xl">
             efficiently manage your property assets. easily request maintenance
             services for your properties, ensuring timely and effective upkeep.
             Additionally, detailed information about subcontractors who
