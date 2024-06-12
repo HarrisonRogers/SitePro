@@ -3,7 +3,7 @@ import Navbar from '@/components/Navbar'
 
 const layout = ({ children }: PropsWithChildren) => {
   return (
-    <main>
+    <main className="bg-background">
       <div>
         <Navbar />
       </div>
