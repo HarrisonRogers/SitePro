@@ -10,7 +10,7 @@ export default function Home() {
       <section className="max-w-6xl mx-auto px-4 sm:px-8 h-screen grid lg:grid-cols-[1fr,400px] items-center">
         <div>
           <h1 className="capitalize text-4xl md:text-7xl font-bold">
-            Site<span className="text-primary">Pro</span>
+            Site<span className="text-secondary">Pro</span>
           </h1>
           <p className="mt-4">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid
@@ -19,7 +19,7 @@ export default function Home() {
             magni natus sit? Assumenda quo nemo vero obcaecati quos incidunt
             corporis iure?
           </p>
-          <Button asChild className="mt-4">
+          <Button asChild className="mt-4" color="white">
             <Link href={'/sites'}>Get Started</Link>
           </Button>
         </div>
