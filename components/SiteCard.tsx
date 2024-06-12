@@ -31,7 +31,11 @@ const SiteCard = ({ site }: { site: SiteTypes }) => {
   return (
     <div>
       <CardHeader>
-        <CardTitle>{site.jobReference}</CardTitle>
+        <Button asChild variant={'link'} className="text-2xl justify-start p-0">
+          <Link href={`sites/${site.id}`} className="p-0">
+            <CardTitle>{site.jobReference}</CardTitle>
+          </Link>
+        </Button>
         <CardDescription>{site.siteAddress}</CardDescription>
       </CardHeader>
       <CardContent>
