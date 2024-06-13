@@ -1,12 +1,36 @@
 'use client'
-import React from 'react'
-import { useParams } from 'next/navigation'
+import React, { useEffect, useState } from 'react'
+import { useSearchParams } from 'next/navigation'
+
+type Product = {
+  name: string
+  quantity: number
+}
 
 const Interior = () => {
-  const params = useParams()
-  const id = params
+  const searchParams = useSearchParams()
+  const [products, setProducts] = useState<Product[]>([])
 
-  return <div className="text-4xl">interior for</div>
+  useEffect(() => {
+    const productsParam = searchParams.get('products')
+    if (productsParam) {
+      const decodedProducts = decodeURIComponent(productsParam).trim()
+      setProducts(JSON.parse(decodedProducts))
+    }
+  }, [searchParams])
+
+  return (
+    <div>
+      <h1>Interior Products</h1>
+      <ul>
+        {products?.map((product, index) => (
+          <li key={index}>
+            {product.name} - Quantity: {product.quantity}
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
 }
 
 export default Interior
