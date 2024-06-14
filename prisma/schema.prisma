@@ -1,0 +1,65 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Site {
+  id String @id @default(uuid())
+  clerkId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  jobReference String
+  siteAddress String
+  owners String
+  buildStart String
+  buildComplete Boolean
+  interiorProducts InteriorProduct[]
+  exteriorProducts ExteriorProduct[]
+}
+
+model InteriorProduct {
+  id Int @id @default(autoincrement())
+  name String
+  supplier String
+
+  siteId String
+  site Site @relation(fields: [siteId], references: [id])
+  maintenanceInstructions MaintenanceInstruction[]
+  installer Installer[] @relation("InteriorProductInstallers")
+}
+
+model ExteriorProduct {
+  id Int @id @default(autoincrement())
+  name String
+  supplier String
+  siteId String
+  site Site @relation(fields: [siteId], references: [id])
+  maintenanceInstructions MaintenanceInstruction[]
+  installer Installer[] @relation("ExteriorProductInstallers")
+}
+
+model MaintenanceInstruction {
+  id Int @id @default(autoincrement())
+  actionRequired String
+  frequency String
+  dueOn DateTime
+  interiorProductId Int?
+  interiorProduct InteriorProduct? @relation(fields: [interiorProductId], references: [id])
+  exteriorProductId Int?
+  exteriorProduct ExteriorProduct? @relation(fields: [exteriorProductId], references: [id])
+}
+
+model Installer {
+  id Int @id @default(autoincrement())
+  name String
+  contact String 
+  interiorProducts        InteriorProduct[]       @relation("InteriorProductInstallers")
+  exteriorProducts        ExteriorProduct[]       @relation("ExteriorProductInstallers")
+}
