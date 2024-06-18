@@ -1,0 +1,112 @@
+[
+  {
+    "id": "1",
+    "createdAt": "2023-06-18T00:00:00Z",
+    "updatedAt": "2023-06-18T00:00:00Z",
+    "jobReference": "My Home",
+    "siteAddress": "9 millers terrace",
+    "owners": "Rogers",
+    "buildStart": "2017-02-30",
+    "buildComplete": false,
+    "interiorProducts": [
+      {
+        "id": 1,
+        "name": "Paint",
+        "supplier": "Supplier A",
+        "siteId": "1",
+        "site": {},
+        "maintenanceInstructions": [
+          {
+            "id": 1,
+            "actionRequired": "Repaint every 5 years",
+            "frequency": "5 years",
+            "dueOn": "2022-02-30T00:00:00Z"
+          }
+        ],
+        "installers": [
+          {
+            "id": 1,
+            "name": "John Doe",
+            "contact": "123-456-7890",
+            "interiorProducts": [],
+            "exteriorProducts": []
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Tiles",
+        "supplier": "Supplier B",
+        "siteId": "1",
+        "site": {},
+        "maintenanceInstructions": [
+          {
+            "id": 2,
+            "actionRequired": "Clean monthly",
+            "frequency": "1 month",
+            "dueOn": "2017-03-30T00:00:00Z"
+          }
+        ],
+        "installers": [
+          {
+            "id": 1,
+            "name": "John Doe",
+            "contact": "123-456-7890",
+            "interiorProducts": [],
+            "exteriorProducts": []
+          }
+        ]
+      }
+    ],
+    "exteriorProducts": [
+      {
+        "id": 3,
+        "name": "Bricks",
+        "supplier": "Supplier C",
+        "siteId": "1",
+        "site": {},
+        "maintenanceInstructions": [
+          {
+            "id": 3,
+            "actionRequired": "Inspect yearly",
+            "frequency": "1 year",
+            "dueOn": "2018-02-30T00:00:00Z"
+          }
+        ],
+        "installers": [
+          {
+            "id": 2,
+            "name": "Jane Smith",
+            "contact": "987-654-3210",
+            "interiorProducts": [],
+            "exteriorProducts": []
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "name": "Cement",
+        "supplier": "Supplier D",
+        "siteId": "1",
+        "site": {},
+        "maintenanceInstructions": [
+          {
+            "id": 4,
+            "actionRequired": "Check for cracks",
+            "frequency": "6 months",
+            "dueOn": "2017-08-30T00:00:00Z"
+          }
+        ],
+        "installers": [
+          {
+            "id": 2,
+            "name": "Jane Smith",
+            "contact": "987-654-3210",
+            "interiorProducts": [],
+            "exteriorProducts": []
+          }
+        ]
+      }
+    ]
+  }
+]
