@@ -10,6 +10,7 @@ import {
 import { Check, X } from 'lucide-react'
 import { Button } from './ui/button'
 import Link from 'next/link'
+import { Site } from '@/utils/types'
 
 type Product = {
   name: string
@@ -27,7 +28,7 @@ type SiteTypes = {
   exteriorProducts: Product[]
 }
 
-const SiteCard = ({ site }: { site: SiteTypes }) => {
+const SiteCard = ({ site }: { site: Site }) => {
   const encodeProducts = (products: Product[]) => {
     const jsonString = JSON.stringify(products)
     const encoded = encodeURIComponent(jsonString)

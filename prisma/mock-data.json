@@ -6,7 +6,7 @@
     "jobReference": "My Home",
     "siteAddress": "9 millers terrace",
     "owners": "Rogers",
-    "buildStart": "2017-02-30",
+    "buildStart": "2017-02-28T00:00:00Z",
     "buildComplete": false,
     "interiorProducts": [
       {
@@ -20,7 +20,7 @@
             "id": 1,
             "actionRequired": "Repaint every 5 years",
             "frequency": "5 years",
-            "dueOn": "2022-02-30T00:00:00Z"
+            "dueOn": "2022-02-28T00:00:00Z"
           }
         ],
         "installers": [
@@ -70,7 +70,7 @@
             "id": 3,
             "actionRequired": "Inspect yearly",
             "frequency": "1 year",
-            "dueOn": "2018-02-30T00:00:00Z"
+            "dueOn": "2018-02-28T00:00:00Z"
           }
         ],
         "installers": [

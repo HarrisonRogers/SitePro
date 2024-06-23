@@ -30,7 +30,7 @@ model InteriorProduct {
   siteId                 String
   site                   Site                   @relation(fields: [siteId], references: [id])
   maintenanceInstructions MaintenanceInstruction[]
-  installers             Installer[]
+  installers             Installer[] @relation("InteriorProductInstallers")
 }
 
 model ExteriorProduct {
@@ -40,7 +40,7 @@ model ExteriorProduct {
   siteId                 String
   site                   Site                   @relation(fields: [siteId], references: [id])
   maintenanceInstructions MaintenanceInstruction[]
-  installers             Installer[]
+  installers             Installer[] @relation("ExteriorProductInstallers")
 }
 
 model MaintenanceInstruction {
@@ -58,6 +58,6 @@ model Installer {
   id                  Int                @id @default(autoincrement())
   name                String
   contact             String
-  interiorProducts    InteriorProduct[]
-  exteriorProducts    ExteriorProduct[]
+  interiorProducts    InteriorProduct[]  @relation("InteriorProductInstallers")
+  exteriorProducts    ExteriorProduct[]  @relation("ExteriorProductInstallers")
 }

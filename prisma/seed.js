@@ -6,46 +6,66 @@ async function main() {
   for (const site of data) {
     const { interiorProducts, exteriorProducts, ...siteData } = site
 
-    const createdSite = await prisma.site.create({
+    await prisma.site.create({
       data: {
         ...siteData,
+        createdAt: new Date(siteData.createdAt),
+        updatedAt: new Date(siteData.updatedAt),
+        buildStart: new Date(siteData.buildStart),
         interiorProducts: {
           create: interiorProducts.map((product) => ({
-            ...product,
+            name: product.name,
+            supplier: product.supplier,
             maintenanceInstructions: {
-              create: product.maintenanceInstructions,
+              create: product.maintenanceInstructions.map((instruction) => ({
+                actionRequired: instruction.actionRequired,
+                frequency: instruction.frequency,
+                dueOn: new Date(instruction.dueOn),
+              })),
             },
             installers: {
               connectOrCreate: product.installers.map((installer) => ({
                 where: { id: installer.id },
-                create: installer,
+                create: {
+                  id: installer.id,
+                  name: installer.name,
+                  contact: installer.contact,
+                },
               })),
             },
           })),
         },
         exteriorProducts: {
           create: exteriorProducts.map((product) => ({
-            ...product,
+            name: product.name,
+            supplier: product.supplier,
             maintenanceInstructions: {
-              create: product.maintenanceInstructions,
+              create: product.maintenanceInstructions.map((instruction) => ({
+                actionRequired: instruction.actionRequired,
+                frequency: instruction.frequency,
+                dueOn: new Date(instruction.dueOn),
+              })),
             },
             installers: {
               connectOrCreate: product.installers.map((installer) => ({
                 where: { id: installer.id },
-                create: installer,
+                create: {
+                  id: installer.id,
+                  name: installer.name,
+                  contact: installer.contact,
+                },
               })),
             },
           })),
         },
       },
     })
-
-    // Ensure circular references are properly handled if required
   }
 }
 
 main()
   .then(async () => {
+    console.log('Seeding completed successfully.')
     await prisma.$disconnect()
   })
   .catch(async (e) => {
