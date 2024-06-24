@@ -1,11 +1,11 @@
 export type Site = {
   id: string
-  createdAt: Date
-  updatedAt: Date
+  createdAt: string // Change to string if you convert dates to ISO strings
+  updatedAt: string // Change to string if you convert dates to ISO strings
   jobReference: string
   siteAddress: string
   owners: string
-  buildStart: string
+  buildStart: string // Change to string if you convert dates to ISO strings
   buildComplete: boolean
   interiorProducts: InteriorProduct[]
   exteriorProducts: ExteriorProduct[]
@@ -35,7 +35,7 @@ export type MaintenanceInstruction = {
   id: number
   actionRequired: string
   frequency: string
-  dueOn: Date
+  dueOn: string // Change to string if you convert dates to ISO strings
   interiorProductId?: number
   interiorProduct?: InteriorProduct
   exteriorProductId?: number

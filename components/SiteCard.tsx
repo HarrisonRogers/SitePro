@@ -56,7 +56,7 @@ const SiteCard = ({ site }: { site: Site }) => {
             <X className="inline text-red-600" />
           )}
         </p>
-        <CardFooter className="mt-4 p-0 flex justify-between">
+        {/* <CardFooter className="mt-4 p-0 flex justify-between">
           <Button asChild>
             <Link
               href={`sites/${site.id}/interior?products=${encodeProducts(
@@ -75,7 +75,7 @@ const SiteCard = ({ site }: { site: Site }) => {
               Exterior
             </Link>
           </Button>
-        </CardFooter>
+        </CardFooter> */}
       </CardContent>
     </div>
   )

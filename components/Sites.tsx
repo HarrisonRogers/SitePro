@@ -1,25 +1,40 @@
-import React from 'react'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
+'use client'
+import React, { useEffect } from 'react'
+import { Card } from '@/components/ui/card'
 import SiteCard from './SiteCard'
 import { useQuery } from '@tanstack/react-query'
 import { getAllSites } from '@/utils/actions'
 import { Site } from '@/utils/types'
 
+const fetchSites = async (): Promise<Site[]> => {
+  const response = await fetch('/api/sites')
+  if (!response.ok) {
+    throw new Error('Failed to fetch sites')
+  }
+  return response.json()
+}
+
 const Sites = () => {
-  const { data, isPending } = useQuery({
+  const { data, isLoading, error } = useQuery<Site[]>({
     queryKey: ['sites'],
-    queryFn: getAllSites,
+    queryFn: fetchSites,
   })
 
-  if (isPending) {
+  useEffect(() => {
+    console.log('Query Data:', data)
+    console.log('Query Error:', error)
+  }, [data, error])
+
+  if (isLoading) {
     return <div className="flex align-center justify-center">Loading...</div>
+  }
+
+  if (error) {
+    return (
+      <div className="flex align-center justify-center">
+        Error Loading Sites
+      </div>
+    )
   }
 
   return (
