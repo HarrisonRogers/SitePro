@@ -1,7 +1,7 @@
 import React from 'react'
-import { InteriorProduct } from '@/utils/types'
+import { ExteriorProduct } from '@/utils/types'
 
-function InteriorCard({ product }: { product: InteriorProduct }) {
+function ExteriorCard({ product }: { product: ExteriorProduct }) {
   return (
     <div className="grid grid-cols-4 text-center text-muted py-4">
       <div className="border-r-2 h-full flex justify-center items-center py-1">
@@ -34,4 +34,4 @@ function InteriorCard({ product }: { product: InteriorProduct }) {
   )
 }
 
-export default InteriorCard
+export default ExteriorCard

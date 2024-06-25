@@ -39,12 +39,16 @@ const Interior = () => {
 
   return (
     <div>
-      <h1 className="flex items-center justify-center text-4xl">
-        Interior Products
-      </h1>
+      <h1 className="text-center mb-10 text-4xl">Interior</h1>
       <div>
+        <div className="grid grid-cols-4 text-2xl text-center mb-4">
+          <h1>Product</h1>
+          <h1>Supplier</h1>
+          <h1>Installer</h1>
+          <h1>Instructions</h1>
+        </div>
         {data?.map((product) => (
-          <Card key={product.id}>
+          <Card key={product.id} className="mb-4 bg-primary">
             <InteriorCard product={product} />
           </Card>
         ))}
