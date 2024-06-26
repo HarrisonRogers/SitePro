@@ -39,7 +39,9 @@ const Exterior = () => {
 
   return (
     <div>
-      <h1 className="text-center mb-10 text-4xl">Exterior</h1>
+      <div className="flex justify-center items-center pb-2 mb-10">
+        <h1 className="text-6xl inline-block px-6 pb-2 border-b-2">Exterior</h1>
+      </div>
       <div>
         <div className="grid grid-cols-4 text-2xl text-center mb-4">
           <h1>Product</h1>

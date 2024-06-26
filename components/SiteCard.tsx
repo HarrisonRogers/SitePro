@@ -16,8 +16,12 @@ const SiteCard = ({ site }: { site: Site }) => {
   return (
     <div>
       <CardHeader>
-        <Button asChild variant={'link'} className="text-2xl justify-start p-0">
-          <Link href={`sites/${site.id}`} className="p-0">
+        <Button
+          asChild
+          variant={'link'}
+          className="text-2xl flex justify-start w-0 p-0"
+        >
+          <Link href={`sites/${site.id}`} className="">
             <CardTitle>{site.jobReference}</CardTitle>
           </Link>
         </Button>
