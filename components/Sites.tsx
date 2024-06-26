@@ -20,11 +20,6 @@ const Sites = () => {
     queryFn: fetchSites,
   })
 
-  useEffect(() => {
-    console.log('Query Data:', data)
-    console.log('Query Error:', error)
-  }, [data, error])
-
   if (isLoading) {
     return <div className="flex align-center justify-center">Loading...</div>
   }

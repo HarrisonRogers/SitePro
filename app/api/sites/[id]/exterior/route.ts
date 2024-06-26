@@ -16,7 +16,6 @@ export async function GET(
     })
     return NextResponse.json(exteriorProducts)
   } catch (error) {
-    console.error('Error fetching exterior products:', error)
     return NextResponse.json(
       { error: 'Error fetching exterior products' },
       { status: 500 }

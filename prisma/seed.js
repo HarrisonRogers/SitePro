@@ -65,11 +65,9 @@ async function main() {
 
 main()
   .then(async () => {
-    console.log('Seeding completed successfully.')
     await prisma.$disconnect()
   })
   .catch(async (e) => {
-    console.error(e)
     await prisma.$disconnect()
     process.exit(1)
   })
