@@ -2,20 +2,43 @@
 import React from 'react'
 import { useRouter } from 'next/router'
 import { useParams } from 'next/navigation'
-import Link from 'next/link'
+import { Site } from '@/utils/types'
+import { useQuery } from '@tanstack/react-query'
+import SingleSiteCard from '@/components/SingleSiteCard'
 
-const Index = () => {
-  // const router = useRouter()
+const SitePage = () => {
   const params = useParams()
   const { id } = params
 
+  const fetchSite = async (): Promise<Site> => {
+    const res = await fetch(`/api/sites/${id}`)
+    if (!res.ok) {
+      throw new Error('Failed to fetch site')
+    }
+    return res.json()
+  }
+
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['singleSite', id],
+    queryFn: fetchSite,
+    enabled: !!id,
+  })
+
+  if (isLoading) {
+    return <div className="flex align-center justify-center">Loading...</div>
+  }
+
+  if (error) {
+    return (
+      <div className="flex align-center justify-center">Error Loading Site</div>
+    )
+  }
+
   return (
     <div>
-      <h1>Site Details for {id}</h1>
-      <Link href={`/sites/${id}/interior`}>Interior</Link>
-      <Link href={`/sites/${id}/exterior`}>Exterior</Link>
+      <SingleSiteCard site={data} />
     </div>
   )
 }
 
-export default Index
+export default SitePage

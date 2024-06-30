@@ -1,9 +1,8 @@
 'use client'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Card } from '@/components/ui/card'
 import SiteCard from './SiteCard'
 import { useQuery } from '@tanstack/react-query'
-import { getAllSites } from '@/utils/actions'
 import { Site } from '@/utils/types'
 
 const fetchSites = async (): Promise<Site[]> => {
