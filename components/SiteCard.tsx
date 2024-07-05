@@ -25,7 +25,6 @@ const SiteCard = ({ site }: { site: Site }) => {
             <CardTitle>{site.jobReference}</CardTitle>
           </Link>
         </Button>
-        <CardDescription>{site.siteAddress}</CardDescription>
       </CardHeader>
       <CardContent>
         <p>Owners: {site.owners}</p>

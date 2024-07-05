@@ -5,6 +5,7 @@ import { useParams } from 'next/navigation'
 import { Site } from '@/utils/types'
 import { useQuery } from '@tanstack/react-query'
 import SingleSiteCard from '@/components/SingleSiteCard'
+import { Card } from '@/components/ui/card'
 
 const SitePage = () => {
   const params = useParams()
@@ -36,7 +37,9 @@ const SitePage = () => {
 
   return (
     <div>
-      <SingleSiteCard site={data} />
+      <Card>
+        <SingleSiteCard site={data} />
+      </Card>
     </div>
   )
 }
