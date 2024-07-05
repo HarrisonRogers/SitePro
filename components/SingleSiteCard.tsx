@@ -1,6 +1,9 @@
 import { Site } from '@/utils/types'
 import { Check, X } from 'lucide-react'
 import React from 'react'
+import { Button } from './ui/button'
+import { CardFooter, CardTitle } from './ui/card'
+import Link from 'next/link'
 
 function openMap(address: string) {
   const isApple =
@@ -47,26 +50,45 @@ function SingleSiteCard({ site }: { site: Site | undefined }) {
         </div>
         <p className="text-gray-500 text-sm pt-2">{site?.owners}</p>
       </div>
-      <p>
-        Build Complete:{' '}
-        {site?.buildComplete ? (
-          <Check className="inline text-lime-500" />
-        ) : (
-          <X className="inline text-red-600" />
-        )}
-      </p>
-      <p>
-        Build Start: {site?.buildStart ? formatDate(site?.buildStart) : 'N/A'}
-      </p>
-      <p>Address: {site?.siteAddress}</p>
-      {site?.siteAddress && (
-        <button
-          onClick={handleOpenMap}
-          className="mt-4 p-2 bg-blue-500 text-white rounded"
-        >
-          Open in maps
-        </button>
-      )}
+      <div className="grid grid-cols-3 text-center pb-4">
+        <p className="border-r-2 flex justify-center items-center">
+          Build Complete:{' '}
+          {site?.buildComplete ? (
+            <Check className="inline text-lime-500" />
+          ) : (
+            <X className="inline text-red-600" />
+          )}
+        </p>
+        <p className="border-r-2 flex justify-center items-center">
+          Build Start: {site?.buildStart ? formatDate(site?.buildStart) : 'N/A'}
+        </p>
+        <p>
+          Address:{' '}
+          {site?.siteAddress ? (
+            <Link
+              onClick={handleOpenMap}
+              style={{
+                color: 'blue',
+                cursor: 'pointer',
+                textDecoration: 'underline',
+              }}
+              href={''}
+            >
+              {site.siteAddress}
+            </Link>
+          ) : (
+            'N/A'
+          )}
+        </p>
+      </div>
+      <CardFooter className="mt-6 flex justify-center">
+        <Button asChild className="mr-16">
+          <Link href={`/sites/${site?.id}/interior`}>Interior</Link>
+        </Button>
+        <Button asChild>
+          <Link href={`/sites/${site?.id}/exterior`}>Exterior</Link>
+        </Button>
+      </CardFooter>
     </div>
   )
 }

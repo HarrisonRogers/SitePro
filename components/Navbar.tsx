@@ -6,9 +6,16 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from './ui/button'
 import { usePathname } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 
 const Navbar = () => {
   const params = usePathname()
+  const router = useRouter()
+
+  // Check if current path has id in it
+  const isInteriorOrExterior = /^\/sites\/[^/]+\/(exterior|interior)$/.test(
+    params
+  )
 
   return (
     <nav className="bg-primary py-4 sm:px-16 lg:px-24 px-4 flex items-center justify-between">
@@ -34,7 +41,6 @@ const Navbar = () => {
       ) : (
         ''
       )}
-
       <div>
         <UserButton />
       </div>
