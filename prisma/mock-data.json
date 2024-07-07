@@ -108,5 +108,507 @@
         ]
       }
     ]
+  },
+  {
+    "id": "2",
+    "createdAt": "2023-06-19T00:00:00Z",
+    "updatedAt": "2023-06-19T00:00:00Z",
+    "jobReference": "Dream Villa",
+    "siteAddress": "12 sunset boulevard",
+    "owners": "Smiths",
+    "buildStart": "2018-03-15T00:00:00Z",
+    "buildComplete": true,
+    "interiorProducts": [
+      {
+        "id": 3,
+        "name": "Wallpaper",
+        "supplier": "Supplier E",
+        "siteId": "2",
+        "site": {},
+        "maintenanceInstructions": [
+          {
+            "id": 5,
+            "actionRequired": "Replace every 10 years",
+            "frequency": "10 years",
+            "dueOn": "2028-03-15T00:00:00Z"
+          }
+        ],
+        "installers": [
+          {
+            "id": 3,
+            "name": "Tom Brown",
+            "contact": "321-654-0987",
+            "interiorProducts": [],
+            "exteriorProducts": []
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "name": "Carpet",
+        "supplier": "Supplier F",
+        "siteId": "2",
+        "site": {},
+        "maintenanceInstructions": [
+          {
+            "id": 6,
+            "actionRequired": "Vacuum weekly",
+            "frequency": "1 week",
+            "dueOn": "2018-03-22T00:00:00Z"
+          }
+        ],
+        "installers": [
+          {
+            "id": 3,
+            "name": "Tom Brown",
+            "contact": "321-654-0987",
+            "interiorProducts": [],
+            "exteriorProducts": []
+          }
+        ]
+      }
+    ],
+    "exteriorProducts": [
+      {
+        "id": 5,
+        "name": "Stucco",
+        "supplier": "Supplier G",
+        "siteId": "2",
+        "site": {},
+        "maintenanceInstructions": [
+          {
+            "id": 7,
+            "actionRequired": "Wash yearly",
+            "frequency": "1 year",
+            "dueOn": "2019-03-15T00:00:00Z"
+          }
+        ],
+        "installers": [
+          {
+            "id": 4,
+            "name": "Alice Green",
+            "contact": "456-789-1230",
+            "interiorProducts": [],
+            "exteriorProducts": []
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "name": "Windows",
+        "supplier": "Supplier H",
+        "siteId": "2",
+        "site": {},
+        "maintenanceInstructions": [
+          {
+            "id": 8,
+            "actionRequired": "Clean monthly",
+            "frequency": "1 month",
+            "dueOn": "2018-04-15T00:00:00Z"
+          }
+        ],
+        "installers": [
+          {
+            "id": 4,
+            "name": "Alice Green",
+            "contact": "456-789-1230",
+            "interiorProducts": [],
+            "exteriorProducts": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "createdAt": "2023-06-20T00:00:00Z",
+    "updatedAt": "2023-06-20T00:00:00Z",
+    "jobReference": "Mountain Retreat",
+    "siteAddress": "15 pine tree lane",
+    "owners": "Johnsons",
+    "buildStart": "2019-05-10T00:00:00Z",
+    "buildComplete": false,
+    "interiorProducts": [
+      {
+        "id": 7,
+        "name": "Wood Flooring",
+        "supplier": "Supplier I",
+        "siteId": "3",
+        "site": {},
+        "maintenanceInstructions": [
+          {
+            "id": 9,
+            "actionRequired": "Polish yearly",
+            "frequency": "1 year",
+            "dueOn": "2020-05-10T00:00:00Z"
+          }
+        ],
+        "installers": [
+          {
+            "id": 5,
+            "name": "Mike Davis",
+            "contact": "654-321-9870",
+            "interiorProducts": [],
+            "exteriorProducts": []
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "name": "Cabinets",
+        "supplier": "Supplier J",
+        "siteId": "3",
+        "site": {},
+        "maintenanceInstructions": [
+          {
+            "id": 10,
+            "actionRequired": "Clean quarterly",
+            "frequency": "3 months",
+            "dueOn": "2019-08-10T00:00:00Z"
+          }
+        ],
+        "installers": [
+          {
+            "id": 5,
+            "name": "Mike Davis",
+            "contact": "654-321-9870",
+            "interiorProducts": [],
+            "exteriorProducts": []
+          }
+        ]
+      }
+    ],
+    "exteriorProducts": [
+      {
+        "id": 9,
+        "name": "Wood Siding",
+        "supplier": "Supplier K",
+        "siteId": "3",
+        "site": {},
+        "maintenanceInstructions": [
+          {
+            "id": 11,
+            "actionRequired": "Stain every 3 years",
+            "frequency": "3 years",
+            "dueOn": "2022-05-10T00:00:00Z"
+          }
+        ],
+        "installers": [
+          {
+            "id": 6,
+            "name": "Karen White",
+            "contact": "789-123-4560",
+            "interiorProducts": [],
+            "exteriorProducts": []
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "name": "Roof Shingles",
+        "supplier": "Supplier L",
+        "siteId": "3",
+        "site": {},
+        "maintenanceInstructions": [
+          {
+            "id": 12,
+            "actionRequired": "Inspect every 5 years",
+            "frequency": "5 years",
+            "dueOn": "2024-05-10T00:00:00Z"
+          }
+        ],
+        "installers": [
+          {
+            "id": 6,
+            "name": "Karen White",
+            "contact": "789-123-4560",
+            "interiorProducts": [],
+            "exteriorProducts": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "createdAt": "2023-06-21T00:00:00Z",
+    "updatedAt": "2023-06-21T00:00:00Z",
+    "jobReference": "Beach House",
+    "siteAddress": "20 ocean drive",
+    "owners": "Wilsons",
+    "buildStart": "2020-06-25T00:00:00Z",
+    "buildComplete": true,
+    "interiorProducts": [
+      {
+        "id": 11,
+        "name": "Vinyl Flooring",
+        "supplier": "Supplier M",
+        "siteId": "4",
+        "site": {},
+        "maintenanceInstructions": [
+          {
+            "id": 13,
+            "actionRequired": "Sweep daily",
+            "frequency": "1 day",
+            "dueOn": "2020-06-26T00:00:00Z"
+          }
+        ],
+        "installers": [
+          {
+            "id": 7,
+            "name": "Sam Brown",
+            "contact": "123-123-1234",
+            "interiorProducts": [],
+            "exteriorProducts": []
+          }
+        ]
+      },
+      {
+        "id": 12,
+        "name": "Light Fixtures",
+        "supplier": "Supplier N",
+        "siteId": "4",
+        "site": {},
+        "maintenanceInstructions": [
+          {
+            "id": 14,
+            "actionRequired": "Replace bulbs as needed",
+            "frequency": "as needed",
+            "dueOn": "2020-06-26T00:00:00Z"
+          }
+        ],
+        "installers": [
+          {
+            "id": 7,
+            "name": "Sam Brown",
+            "contact": "123-123-1234",
+            "interiorProducts": [],
+            "exteriorProducts": []
+          }
+        ]
+      }
+    ],
+    "exteriorProducts": [
+      {
+        "id": 13,
+        "name": "Sandstone",
+        "supplier": "Supplier O",
+        "siteId": "4",
+        "site": {},
+        "maintenanceInstructions": [
+          {
+            "id": 15,
+            "actionRequired": "Power wash yearly",
+            "frequency": "1 year",
+            "dueOn": "2021-06-25T00:00:00Z"
+          }
+        ],
+        "installers": [
+          {
+            "id": 8,
+            "name": "Rachel Green",
+            "contact": "234-567-8901",
+            "interiorProducts": [],
+            "exteriorProducts": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "createdAt": "2023-06-22T00:00:00Z",
+    "updatedAt": "2023-06-22T00:00:00Z",
+    "jobReference": "Lake House",
+    "siteAddress": "25 lakeside view",
+    "owners": "Andersons",
+    "buildStart": "2021-07-10T00:00:00Z",
+    "buildComplete": false,
+    "interiorProducts": [
+      {
+        "id": 14,
+        "name": "Hardwood Flooring",
+        "supplier": "Supplier P",
+        "siteId": "5",
+        "site": {},
+        "maintenanceInstructions": [
+          {
+            "id": 16,
+            "actionRequired": "Refinish every 5 years",
+            "frequency": "5 years",
+            "dueOn": "2026-07-10T00:00:00Z"
+          }
+        ],
+        "installers": [
+          {
+            "id": 9,
+            "name": "Bob Smith",
+            "contact": "345-678-9012",
+            "interiorProducts": [],
+            "exteriorProducts": []
+          }
+        ]
+      },
+      {
+        "id": 15,
+        "name": "Granite Countertops",
+        "supplier": "Supplier Q",
+        "siteId": "5",
+        "site": {},
+        "maintenanceInstructions": [
+          {
+            "id": 17,
+            "actionRequired": "Seal every 2 years",
+            "frequency": "2 years",
+            "dueOn": "2023-07-10T00:00:00Z"
+          }
+        ],
+        "installers": [
+          {
+            "id": 9,
+            "name": "Bob Smith",
+            "contact": "345-678-9012",
+            "interiorProducts": [],
+            "exteriorProducts": []
+          }
+        ]
+      }
+    ],
+    "exteriorProducts": [
+      {
+        "id": 16,
+        "name": "Stone Veneer",
+        "supplier": "Supplier R",
+        "siteId": "5",
+        "site": {},
+        "maintenanceInstructions": [
+          {
+            "id": 18,
+            "actionRequired": "Inspect every 2 years",
+            "frequency": "2 years",
+            "dueOn": "2023-07-10T00:00:00Z"
+          }
+        ],
+        "installers": [
+          {
+            "id": 10,
+            "name": "Linda White",
+            "contact": "567-890-1234",
+            "interiorProducts": [],
+            "exteriorProducts": []
+          }
+        ]
+      },
+      {
+        "id": 17,
+        "name": "Decking",
+        "supplier": "Supplier S",
+        "siteId": "5",
+        "site": {},
+        "maintenanceInstructions": [
+          {
+            "id": 19,
+            "actionRequired": "Seal yearly",
+            "frequency": "1 year",
+            "dueOn": "2022-07-10T00:00:00Z"
+          }
+        ],
+        "installers": [
+          {
+            "id": 10,
+            "name": "Linda White",
+            "contact": "567-890-1234",
+            "interiorProducts": [],
+            "exteriorProducts": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "6",
+    "createdAt": "2023-06-23T00:00:00Z",
+    "updatedAt": "2023-06-23T00:00:00Z",
+    "jobReference": "City Loft",
+    "siteAddress": "30 skyline road",
+    "owners": "Browns",
+    "buildStart": "2022-08-15T00:00:00Z",
+    "buildComplete": true,
+    "interiorProducts": [
+      {
+        "id": 18,
+        "name": "Laminate Flooring",
+        "supplier": "Supplier T",
+        "siteId": "6",
+        "site": {},
+        "maintenanceInstructions": [
+          {
+            "id": 20,
+            "actionRequired": "Sweep weekly",
+            "frequency": "1 week",
+            "dueOn": "2022-08-22T00:00:00Z"
+          }
+        ],
+        "installers": [
+          {
+            "id": 11,
+            "name": "Henry Johnson",
+            "contact": "678-901-2345",
+            "interiorProducts": [],
+            "exteriorProducts": []
+          }
+        ]
+      },
+      {
+        "id": 19,
+        "name": "Curtains",
+        "supplier": "Supplier U",
+        "siteId": "6",
+        "site": {},
+        "maintenanceInstructions": [
+          {
+            "id": 21,
+            "actionRequired": "Dry clean yearly",
+            "frequency": "1 year",
+            "dueOn": "2023-08-15T00:00:00Z"
+          }
+        ],
+        "installers": [
+          {
+            "id": 11,
+            "name": "Henry Johnson",
+            "contact": "678-901-2345",
+            "interiorProducts": [],
+            "exteriorProducts": []
+          }
+        ]
+      }
+    ],
+    "exteriorProducts": [
+      {
+        "id": 20,
+        "name": "Glass Panels",
+        "supplier": "Supplier V",
+        "siteId": "6",
+        "site": {},
+        "maintenanceInstructions": [
+          {
+            "id": 22,
+            "actionRequired": "Clean quarterly",
+            "frequency": "3 months",
+            "dueOn": "2022-11-15T00:00:00Z"
+          }
+        ],
+        "installers": [
+          {
+            "id": 12,
+            "name": "Emma Thompson",
+            "contact": "789-012-3456",
+            "interiorProducts": [],
+            "exteriorProducts": []
+          }
+        ]
+      }
+    ]
   }
 ]
