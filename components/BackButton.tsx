@@ -9,7 +9,7 @@ const BackButton = () => {
   const params = usePathname()
 
   return (
-    <div className="fixed bottom-4 transform -translate-x-1/2">
+    <div className="fixed bottom-10">
       {params !== '/sites' ? (
         <Button onClick={() => router.back()}>
           <MoveLeft />
