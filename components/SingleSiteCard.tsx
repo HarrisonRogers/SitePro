@@ -2,7 +2,7 @@ import { Site } from '@/utils/types'
 import { Check, X } from 'lucide-react'
 import React from 'react'
 import { Button } from './ui/button'
-import { CardFooter, CardTitle } from './ui/card'
+import { CardFooter } from './ui/card'
 import Link from 'next/link'
 
 function openMap(address: string) {
@@ -28,7 +28,7 @@ function SingleSiteCard({ site }: { site: Site | undefined }) {
     if (site?.siteAddress) {
       openMap(site?.siteAddress)
     } else {
-      console.error('No Site address available')
+      console.error('No site address available')
     }
   }
 

@@ -4,6 +4,7 @@ import { Card } from '@/components/ui/card'
 import SiteCard from './SiteCard'
 import { useQuery } from '@tanstack/react-query'
 import { Site } from '@/utils/types'
+import AddSiteButton from './AddSiteButton'
 
 const fetchSites = async (): Promise<Site[]> => {
   const response = await fetch('/api/sites')
@@ -40,6 +41,7 @@ const Sites = () => {
             <SiteCard site={site} />
           </Card>
         ))}
+        <AddSiteButton />
       </div>
     </div>
   )
