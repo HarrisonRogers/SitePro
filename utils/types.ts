@@ -1,3 +1,4 @@
+// Site action
 export type Site = {
   id: string
   createdAt: string // Change to string if you convert dates to ISO strings
@@ -48,4 +49,13 @@ export type Installer = {
   contact: string
   interiorProducts: InteriorProduct[]
   exteriorProducts: ExteriorProduct[]
+}
+
+// Create a new job
+export type CreateSite = {
+  jobReference: string
+  siteAddress: string
+  owners: string
+  buildStart: string // Change to string if you convert dates to ISO strings
+  buildComplete: boolean
 }
