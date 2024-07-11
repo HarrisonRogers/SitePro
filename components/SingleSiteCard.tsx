@@ -4,6 +4,7 @@ import React from 'react'
 import { Button } from './ui/button'
 import { CardFooter } from './ui/card'
 import Link from 'next/link'
+import DeleteSiteButton from './DeleteSiteButton'
 
 function openMap(address: string) {
   const isApple =
@@ -42,6 +43,7 @@ function SingleSiteCard({ site }: { site: Site | undefined }) {
 
   return (
     <div>
+      <DeleteSiteButton id={site?.id} />
       <div className="flex flex-col justify-center items-center pb-2 mb-10">
         <div className="inline-block px-6 pb-2 border-b-2 border-primary">
           <h1 className="text-4xl pt-2">

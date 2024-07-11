@@ -139,3 +139,21 @@ export async function createSiteAction(
     return null
   }
 }
+
+// Delete function
+export async function deleteSiteAction(id: string): Promise<boolean> {
+  try {
+    const res = await fetch(`/api/sites/${id}`, {
+      method: 'DELETE',
+    })
+
+    if (!res.ok) {
+      throw new Error('Failed to delete site')
+    }
+
+    return true
+  } catch (error) {
+    console.error('Error deleting site:', error)
+    return false
+  }
+}
