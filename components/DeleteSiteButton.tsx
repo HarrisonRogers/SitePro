@@ -5,7 +5,6 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { deleteSiteAction } from '@/utils/actions'
 import { Button } from './ui/button'
 import { X } from 'lucide-react'
-import Router from 'next/router'
 import { useRouter } from 'next/navigation'
 
 function DeleteSiteButton({ id }: { id: string | undefined }) {

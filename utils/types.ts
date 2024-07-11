@@ -13,7 +13,7 @@ export type Site = {
 }
 
 export type InteriorProduct = {
-  id: number
+  id: string
   name: string
   supplier: string
   siteId: string
@@ -23,7 +23,7 @@ export type InteriorProduct = {
 }
 
 export type ExteriorProduct = {
-  id: number
+  id: string
   name: string
   supplier: string
   siteId: string
@@ -33,18 +33,18 @@ export type ExteriorProduct = {
 }
 
 export type MaintenanceInstruction = {
-  id: number
+  id: string
   actionRequired: string
   frequency: string
   dueOn: string // Change to string if you convert dates to ISO strings
-  interiorProductId?: number
+  interiorProductId?: string
   interiorProduct?: InteriorProduct
-  exteriorProductId?: number
+  exteriorProductId?: string
   exteriorProduct?: ExteriorProduct
 }
 
 export type Installer = {
-  id: number
+  id: string
   name: string
   contact: string
   interiorProducts: InteriorProduct[]

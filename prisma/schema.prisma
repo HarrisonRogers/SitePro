@@ -24,40 +24,40 @@ model Site {
 }
 
 model InteriorProduct {
-  id                     Int                    @id @default(autoincrement())
+  id                     String               @id @default(uuid())
   name                   String
   supplier               String
   siteId                 String
-  site                   Site                   @relation(fields: [siteId], references: [id])
+  site                   Site                 @relation(fields: [siteId], references: [id])
   maintenanceInstructions MaintenanceInstruction[]
-  installers             Installer[] @relation("InteriorProductInstallers")
+  installers             Installer[]          @relation("InteriorProductInstallers")
 }
 
 model ExteriorProduct {
-  id                     Int                    @id @default(autoincrement())
+  id                     String               @id @default(uuid())
   name                   String
   supplier               String
   siteId                 String
-  site                   Site                   @relation(fields: [siteId], references: [id])
+  site                   Site                 @relation(fields: [siteId], references: [id])
   maintenanceInstructions MaintenanceInstruction[]
-  installers             Installer[] @relation("ExteriorProductInstallers")
+  installers             Installer[]          @relation("ExteriorProductInstallers")
 }
 
 model MaintenanceInstruction {
-  id                  Int                @id @default(autoincrement())
+  id                  String               @id @default(uuid())
   actionRequired      String
   frequency           String
   dueOn               DateTime
-  interiorProductId   Int?
-  interiorProduct     InteriorProduct?   @relation(fields: [interiorProductId], references: [id])
-  exteriorProductId   Int?
-  exteriorProduct     ExteriorProduct?   @relation(fields: [exteriorProductId], references: [id])
+  interiorProductId   String?
+  interiorProduct     InteriorProduct?     @relation(fields: [interiorProductId], references: [id])
+  exteriorProductId   String?
+  exteriorProduct     ExteriorProduct?     @relation(fields: [exteriorProductId], references: [id])
 }
 
 model Installer {
-  id                  Int                @id @default(autoincrement())
-  name                String @unique
+  id                  String               @id @default(uuid())
+  name                String               @unique
   contact             String
-  interiorProducts    InteriorProduct[]  @relation("InteriorProductInstallers")
-  exteriorProducts    ExteriorProduct[]  @relation("ExteriorProductInstallers")
+  interiorProducts    InteriorProduct[]    @relation("InteriorProductInstallers")
+  exteriorProducts    ExteriorProduct[]    @relation("ExteriorProductInstallers")
 }
