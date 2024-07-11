@@ -26,10 +26,10 @@ export function CustomFormField({ name, control }: CustomFormFieldProps) {
       control={control}
       name={name}
       render={({ field }) => (
-        <FormItem>
-          <FormLabel className="capitalize">{name}</FormLabel>
+        <FormItem className="w-full">
+          <FormLabel className="capitalize text-white">{name}</FormLabel>
           <FormControl>
-            <Input {...field} className="text-primary" />
+            <Input {...field} className="text-primary w-full" />
           </FormControl>
         </FormItem>
       )}

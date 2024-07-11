@@ -88,28 +88,52 @@ export async function getAllSites(): Promise<Site[]> {
 // }
 
 // Create a Site
+// export async function createSiteAction(
+//   values: CreateSite
+// ): Promise<Site | null> {
+//   try {
+//     const site = await prisma.site.create({
+//       data: {
+//         ...values,
+//         buildStart: new Date(values.buildStart), // Convert string to Date
+//       },
+//     })
+
+//     // Convert Dates to strings
+//     const formattedSite: Site = {
+//       ...site,
+//       createdAt: site.createdAt.toISOString(),
+//       updatedAt: site.updatedAt.toISOString(),
+//       buildStart: site.buildStart.toISOString(),
+//       interiorProducts: [],
+//       exteriorProducts: [],
+//     }
+
+//     return formattedSite
+//   } catch (error) {
+//     console.error('Error creating site:', error)
+//     return null
+//   }
+// }
+
 export async function createSiteAction(
   values: CreateSite
 ): Promise<Site | null> {
   try {
-    const site = await prisma.site.create({
-      data: {
-        ...values,
-        buildStart: new Date(values.buildStart), // Convert string to Date
+    const response = await fetch('/api/sites/add-site', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
       },
+      body: JSON.stringify(values),
     })
 
-    // Convert Dates to strings
-    const formattedSite: Site = {
-      ...site,
-      createdAt: site.createdAt.toISOString(),
-      updatedAt: site.updatedAt.toISOString(),
-      buildStart: site.buildStart.toISOString(),
-      interiorProducts: [],
-      exteriorProducts: [],
+    if (!response.ok) {
+      throw new Error('Failed to create site')
     }
 
-    return formattedSite
+    const site: Site = await response.json()
+    return site
   } catch (error) {
     console.error('Error creating site:', error)
     return null
