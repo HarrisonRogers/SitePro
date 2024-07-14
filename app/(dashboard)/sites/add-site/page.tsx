@@ -11,9 +11,7 @@ const addSite = () => {
   const queryClient = new QueryClient()
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <Card>
-        <CreateSiteForm />
-      </Card>
+      <CreateSiteForm />
     </HydrationBoundary>
   )
 }

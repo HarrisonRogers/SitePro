@@ -59,15 +59,17 @@ const CreateSiteForm = () => {
     mutate(validValues)
   }
 
+  const buildComplete = form.watch('buildComplete')
+
   return (
     <Form {...form}>
+      <h2 className="capitalize font-semibold text-primary text-4xl mb-6 flex justify-center items-center">
+        Add Site
+      </h2>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="bg-primary p-8 rounded flex flex-col justify-center items-center"
+        className="p-8 rounded flex flex-col justify-center items-center"
       >
-        <h2 className="capitalize font-semibold text-white text-4xl mb-6">
-          Add Site
-        </h2>
         <div className="flex flex-col w-1/3 items-center justify-center space-y-4">
           {/* Reference */}
           <CustomFormField name="jobReference" control={form.control} />
@@ -77,31 +79,35 @@ const CreateSiteForm = () => {
           <CustomFormField name="siteAddress" control={form.control} />
           {/* Build complete */}
           <div
-            className="flex items-center space-x-2"
+            className="flex items-center space-x-2 my-4"
             style={{ margin: '2rem 0 1.5rem 0' }}
           >
-            <Checkbox id="buildComplete" className="border-white" />
+            <Checkbox
+              id="buildComplete"
+              {...form.register('buildComplete')}
+              onCheckedChange={(checked) =>
+                form.setValue('buildComplete', Boolean(checked))
+              }
+              checked={buildComplete}
+            />
             <label
               htmlFor="buildComplete"
-              className="text-sm font-medium text-white leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              className="text-sm font-medium text-primary leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             >
               Is complete
             </label>
             {/* Build start */}
           </div>
-          <label className=" text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 capitalize text-white">
-            Build Start
-          </label>
           <Popover>
             <PopoverTrigger asChild>
               <Button
                 variant={'outline'}
-                className={`w-[280px] justify-start text-left font-normal ${
+                className={`w-[280px] justify-start text-left font-normal mt-0 ${
                   !date ? 'text-muted-foreground' : ''
                 }`}
               >
                 <CalendarIcon className="mr-2 h-4 w-4" />
-                {date ? format(date, 'PPP') : <span>Pick a date</span>}
+                {date ? format(date, 'PPP') : <span>Build Start</span>}
               </Button>
             </PopoverTrigger>
             <PopoverContent className="w-auto p-0">
@@ -113,10 +119,9 @@ const CreateSiteForm = () => {
               />
             </PopoverContent>
           </Popover>
-          <div>
+          <div className="mt-4">
             <Button
               type="submit"
-              variant={'secondary'}
               className="capitalize mt-4"
               disabled={isPending}
             >
