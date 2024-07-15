@@ -1,5 +1,7 @@
-import { NextResponse } from 'next/server'
+import { NextResponse, NextRequest } from 'next/server'
 import prisma from '@/utils/db'
+import { CreateProduct, InteriorProduct } from '@/utils/types'
+import { createInteriorProduct } from '@/utils/actions'
 
 export async function GET(
   request: Request,
@@ -18,6 +20,30 @@ export async function GET(
   } catch (error) {
     return NextResponse.json(
       { error: 'Error fetching interior products' },
+      { status: 500 }
+    )
+  }
+}
+
+// Create Product
+export async function POST(req: NextRequest) {
+  try {
+    const { values, siteId }: { values: CreateProduct; siteId: string } =
+      await req.json()
+    const product = await createInteriorProduct(values, siteId)
+
+    if (product) {
+      return NextResponse.json(product, { status: 200 })
+    } else {
+      return NextResponse.json(
+        { error: 'failed to create interior product' },
+        { status: 500 }
+      )
+    }
+  } catch (error) {
+    console.error('Error handleing request:', error)
+    return NextResponse.json(
+      { error: 'Failed to create interior product' },
       { status: 500 }
     )
   }

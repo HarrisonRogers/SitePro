@@ -1,5 +1,5 @@
 import prisma from './db'
-import { CreateSite, Site } from './types'
+import { CreateProduct, CreateSite, InteriorProduct, Site } from './types'
 
 export async function getAllSites(): Promise<Site[]> {
   try {
@@ -62,60 +62,7 @@ export async function getAllSites(): Promise<Site[]> {
   }
 }
 
-// // Create a Site
-// export async function createSiteAction(
-//   values: CreateSite
-// ): Promise<CreateSite | null> {
-//   try {
-//     const site = await prisma.site.create({
-//       data: {
-//         ...values,
-//         buildStart: new Date(values.buildStart),
-//       },
-//     })
-
-//     // convert dates to strings
-//     const formattedSites: CreateSite = {
-//       ...site,
-//       buildStart: site.buildStart.toISOString(),
-//     }
-
-//     return formattedSites
-//   } catch (error) {
-//     console.error('Error creating site:', error)
-//     return null
-//   }
-// }
-
-// Create a Site
-// export async function createSiteAction(
-//   values: CreateSite
-// ): Promise<Site | null> {
-//   try {
-//     const site = await prisma.site.create({
-//       data: {
-//         ...values,
-//         buildStart: new Date(values.buildStart), // Convert string to Date
-//       },
-//     })
-
-//     // Convert Dates to strings
-//     const formattedSite: Site = {
-//       ...site,
-//       createdAt: site.createdAt.toISOString(),
-//       updatedAt: site.updatedAt.toISOString(),
-//       buildStart: site.buildStart.toISOString(),
-//       interiorProducts: [],
-//       exteriorProducts: [],
-//     }
-
-//     return formattedSite
-//   } catch (error) {
-//     console.error('Error creating site:', error)
-//     return null
-//   }
-// }
-
+// Create Site
 export async function createSiteAction(
   values: CreateSite
 ): Promise<Site | null> {
@@ -155,5 +102,70 @@ export async function deleteSiteAction(id: string): Promise<boolean> {
   } catch (error) {
     console.error('Error deleting site:', error)
     return false
+  }
+}
+
+// Create Interior product
+export async function createInteriorProduct(
+  values: CreateProduct,
+  siteId: string
+): Promise<InteriorProduct | null> {
+  try {
+    const interiorProduct = await prisma.interiorProduct.create({
+      data: {
+        name: values.name,
+        supplier: values.supplier,
+        siteId: siteId,
+        maintenanceInstructions: {
+          create: values.maintenanceInstructions.map((instruction) => ({
+            actionRequired: instruction.actionRequired,
+            frequency: instruction.frequency,
+            dueOn: new Date(instruction.dueOn), // Convert string to Date
+          })),
+        },
+        installers: {
+          create: values.installers.map((installer) => ({
+            name: installer.name,
+            contact: installer.contact,
+          })),
+        },
+      },
+      include: {
+        maintenanceInstructions: true,
+        installers: true,
+        site: true,
+      },
+    })
+
+    // Convert Dates to strings and ensure all required fields are present
+    const formattedInteriorProduct: InteriorProduct = {
+      ...interiorProduct,
+      maintenanceInstructions: interiorProduct.maintenanceInstructions.map(
+        (instruction) => ({
+          ...instruction,
+          dueOn: instruction.dueOn.toISOString(),
+          interiorProductId: instruction.interiorProductId ?? null,
+          exteriorProductId: instruction.exteriorProductId ?? null,
+        })
+      ),
+      installers: interiorProduct.installers.map((installer) => ({
+        ...installer,
+        interiorProducts: [],
+        exteriorProducts: [],
+      })),
+      site: {
+        ...interiorProduct.site,
+        createdAt: interiorProduct.site.createdAt.toISOString(),
+        updatedAt: interiorProduct.site.updatedAt.toISOString(),
+        buildStart: interiorProduct.site.buildStart.toISOString(),
+        interiorProducts: [],
+        exteriorProducts: [],
+      },
+    }
+
+    return formattedInteriorProduct
+  } catch (error) {
+    console.error('Error creating interior product:', error)
+    return null
   }
 }

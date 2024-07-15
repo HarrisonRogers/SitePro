@@ -37,9 +37,9 @@ export type MaintenanceInstruction = {
   actionRequired: string
   frequency: string
   dueOn: string // Change to string if you convert dates to ISO strings
-  interiorProductId?: string
+  interiorProductId?: string | null
   interiorProduct?: InteriorProduct
-  exteriorProductId?: string
+  exteriorProductId?: string | null
   exteriorProduct?: ExteriorProduct
 }
 

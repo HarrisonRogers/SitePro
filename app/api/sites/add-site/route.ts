@@ -1,29 +1,3 @@
-// import { NextRequest, NextResponse } from 'next/server'
-// import { CreateSite } from '@/utils/types'
-// import { createSiteAction } from '@/utils/actions'
-
-// export async function POST(req: NextRequest) {
-//   try {
-//     const values: CreateSite = await req.json()
-//     const site = await createSiteAction(values)
-
-//     if (site) {
-//       return NextResponse.json(site, { status: 200 })
-//     } else {
-//       return NextResponse.json(
-//         { error: 'Failed to create site' },
-//         { status: 500 }
-//       )
-//     }
-//   } catch (error) {
-//     console.error('Error handling request:', error)
-//     return NextResponse.json(
-//       { error: 'Failed to create site' },
-//       { status: 500 }
-//     )
-//   }
-// }
-
 import { NextRequest, NextResponse } from 'next/server'
 import { PrismaClient } from '@prisma/client'
 import { CreateSite, Site } from '@/utils/types'
