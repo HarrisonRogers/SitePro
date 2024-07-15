@@ -21,7 +21,7 @@ const SiteCard = ({ site }: { site: Site }) => {
           variant={'link'}
           className="text-2xl flex justify-start w-0 p-0"
         >
-          <Link href={`sites/${site.id}`} className="">
+          <Link href={`sites/${site.id}`} className="truncate w-full">
             <CardTitle>{site.jobReference}</CardTitle>
           </Link>
         </Button>
