@@ -106,7 +106,7 @@ export async function deleteSiteAction(id: string): Promise<boolean> {
 }
 
 // Create Interior product
-export async function createInteriorProduct(
+export async function createInteriorProductAction(
   values: CreateProduct,
   siteId: string
 ): Promise<InteriorProduct | null> {
@@ -167,5 +167,30 @@ export async function createInteriorProduct(
   } catch (error) {
     console.error('Error creating interior product:', error)
     return null
+  }
+}
+
+export async function createInteriorProduct(
+  values: CreateProduct,
+  siteId: string
+): Promise<any> {
+  try {
+    const res = await fetch(`/api/sites/${siteId}/interior`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ values, siteId }),
+    })
+
+    if (!res.ok) {
+      throw new Error('Failed to create interior product')
+    }
+
+    const data = await res.json()
+    return data
+  } catch (error) {
+    console.error('Error creating interior product:', error)
+    throw error
   }
 }

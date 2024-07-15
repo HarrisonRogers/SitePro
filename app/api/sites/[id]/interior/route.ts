@@ -1,7 +1,7 @@
 import { NextResponse, NextRequest } from 'next/server'
 import prisma from '@/utils/db'
 import { CreateProduct, InteriorProduct } from '@/utils/types'
-import { createInteriorProduct } from '@/utils/actions'
+import { createInteriorProductAction } from '@/utils/actions'
 
 export async function GET(
   request: Request,
@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
   try {
     const { values, siteId }: { values: CreateProduct; siteId: string } =
       await req.json()
-    const product = await createInteriorProduct(values, siteId)
+    const product = await createInteriorProductAction(values, siteId)
 
     if (product) {
       return NextResponse.json(product, { status: 200 })
