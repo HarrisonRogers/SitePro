@@ -42,19 +42,25 @@ const Interior = () => {
       <div className="flex justify-center items-center pb-2 mb-10">
         <h1 className="text-6xl inline-block px-6 pb-2 border-b-2">Interior</h1>
       </div>
-      <div>
-        <div className="grid grid-cols-4 text-2xl text-center mb-4">
-          <h1>Product</h1>
-          <h1>Supplier</h1>
-          <h1>Installer</h1>
-          <h1>Instructions</h1>
+      {data && data.length > 0 ? (
+        <div>
+          <div className="grid grid-cols-4 text-2xl text-center mb-4">
+            <h1>Product</h1>
+            <h1>Supplier</h1>
+            <h1>Installer</h1>
+            <h1>Instructions</h1>
+          </div>
+          {data?.map((product) => (
+            <Card key={product.id} className="mb-4 bg-primary">
+              <InteriorCard product={product} />
+            </Card>
+          ))}
         </div>
-        {data?.map((product) => (
-          <Card key={product.id} className="mb-4 bg-primary">
-            <InteriorCard product={product} />
-          </Card>
-        ))}
-      </div>
+      ) : (
+        <h3 className="text-center">
+          No available <span className="font-bold">interior</span> products
+        </h3>
+      )}
     </div>
   )
 }
