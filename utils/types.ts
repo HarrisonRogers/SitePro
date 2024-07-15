@@ -59,3 +59,22 @@ export type CreateSite = {
   buildStart: string // Change to string if you convert dates to ISO strings
   buildComplete: boolean
 }
+
+// Create a new Product
+export type CreateProduct = {
+  name: string
+  supplier: string
+  maintenanceInstructions: CreateInstructions[]
+  installers: CreateInstaller[]
+}
+
+export type CreateInstructions = {
+  actionRequired: string
+  frequency: string
+  dueOn: string
+}
+
+export type CreateInstaller = {
+  name: string
+  contact: string
+}
