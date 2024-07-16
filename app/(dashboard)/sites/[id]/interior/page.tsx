@@ -5,6 +5,7 @@ import { useQuery } from '@tanstack/react-query'
 import { InteriorProduct } from '@/utils/types'
 import { Card } from '@/components/ui/card'
 import InteriorCard from '@/components/InteriorCard'
+import AddProductButton from '@/components/AddProductButton'
 
 const fetchInteriorProducts = async (
   siteId: string
@@ -55,11 +56,12 @@ const Interior = () => {
               <InteriorCard product={product} />
             </Card>
           ))}
+          <AddProductButton />
         </div>
       ) : (
-        <h3 className="text-center">
-          No available <span className="font-bold">interior</span> products
-        </h3>
+        <div>
+          <AddProductButton />
+        </div>
       )}
     </div>
   )
