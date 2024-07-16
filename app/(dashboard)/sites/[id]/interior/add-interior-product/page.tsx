@@ -1,4 +1,4 @@
-import CreateProductForm from '@/components/CreateSiteForm'
+import CreateProductForm from '@/components/CreateProductForm'
 import React from 'react'
 import {
   dehydrate,
