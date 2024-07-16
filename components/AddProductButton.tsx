@@ -16,7 +16,7 @@ const AddProductButton = () => {
           <Plus />
         </Button>
       </Link>
-      <h1 className="mt-4 mb-4 text-2xl">Add Interior Product</h1>
+      <h1 className="mt-4 mb-4 text-2xl">Add Product</h1>
     </Card>
   )
 }
