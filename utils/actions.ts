@@ -105,7 +105,7 @@ export async function deleteSiteAction(id: string): Promise<boolean> {
   }
 }
 
-// Create Interior product
+// ----- Create Interior product
 export async function createInteriorProductAction(
   values: CreateProduct,
   siteId: string
