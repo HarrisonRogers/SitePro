@@ -43,10 +43,11 @@ const DeleteProductButton: React.FC<DeleteProductProps> = ({ type, id }) => {
   }
 
   return (
-    <div className="p-2 pb-0">
-      <Button variant={'outline'} onClick={() => handleDelete(id)}>
-        <X />
-      </Button>
+    <div>
+      <X
+        onClick={() => handleDelete(id)}
+        className="text-red-600 cursor-pointer absolute mt-1 ml-1"
+      />
     </div>
   )
 }
