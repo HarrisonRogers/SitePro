@@ -56,7 +56,7 @@ model MaintenanceInstruction {
 
 model Installer {
   id                  String               @id @default(uuid())
-  name                String               @unique
+  name                String               
   contact             String
   interiorProducts    InteriorProduct[]    @relation("InteriorProductInstallers")
   exteriorProducts    ExteriorProduct[]    @relation("ExteriorProductInstallers")

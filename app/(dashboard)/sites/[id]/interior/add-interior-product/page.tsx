@@ -6,13 +6,13 @@ import {
   QueryClient,
 } from '@tanstack/react-query'
 
-const addSite = () => {
+const addInteriorProduct = () => {
   const queryClient = new QueryClient()
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <CreateProductForm />
+      <CreateProductForm type="interior" />
     </HydrationBoundary>
   )
 }
 
-export default addSite
+export default addInteriorProduct

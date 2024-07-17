@@ -5,7 +5,7 @@ import { useToast } from './ui/use-toast'
 import { useParams, useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { CreateProduct } from '@/utils/types'
-import { createInteriorProduct } from '@/utils/actions'
+import { createInteriorProduct, createExteriorProduct } from '@/utils/actions'
 import { Form, FormLabel } from './ui/form'
 import { CustomFormField } from './FormComponents'
 import { Popover, PopoverContent, PopoverTrigger } from './ui/popover'
@@ -14,9 +14,13 @@ import { CalendarIcon } from 'lucide-react'
 import { format } from 'date-fns'
 import { Calendar } from './ui/calendar'
 
-const CreateProductForm = () => {
+type CreateProductFormProps = {
+  type: 'interior' | 'exterior'
+}
+
+const CreateProductForm: React.FC<CreateProductFormProps> = ({ type }) => {
   const params = useParams()
-  const id = params.id // Ensure siteId is correctly fetched from the params
+  const id = params.id
   const queryClient = useQueryClient()
   const [date, setDate] = useState<Date>()
   const { toast } = useToast()
@@ -41,18 +45,24 @@ const CreateProductForm = () => {
     },
   })
 
+  const mutationFn =
+    type === 'interior' ? createInteriorProduct : createExteriorProduct
+
   const { mutate, isPending } = useMutation({
-    mutationFn: (values: CreateProduct) =>
-      createInteriorProduct(values, String(id)),
+    mutationFn: (values: CreateProduct) => mutationFn(values, String(id)),
     onSuccess: (data) => {
       if (!data) {
         toast({ description: 'There was an error' })
         return
       }
-      toast({ description: 'Interior product created' })
-      queryClient.invalidateQueries({ queryKey: ['interiorProducts', id] })
+      toast({
+        description: `${
+          type.charAt(0).toUpperCase() + type.slice(1)
+        } product created`,
+      })
+      queryClient.invalidateQueries({ queryKey: [`${type}Products`, id] })
 
-      router.push(`/sites/${id}/interior`)
+      router.push(`/sites/${id}/${type}`)
     },
   })
 
@@ -64,15 +74,15 @@ const CreateProductForm = () => {
           dueOn: date.toISOString(),
         })
       )
-
-      const validValues: CreateProduct = {
-        name: values.name,
-        supplier: values.supplier,
-        maintenanceInstructions: values.maintenanceInstructions,
-        installers: values.installers,
-      }
-      mutate(validValues)
     }
+
+    const validValues: CreateProduct = {
+      name: values.name,
+      supplier: values.supplier,
+      maintenanceInstructions: values.maintenanceInstructions,
+      installers: values.installers,
+    }
+    mutate(validValues)
   }
 
   return (
