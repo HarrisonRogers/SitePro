@@ -87,7 +87,7 @@ export async function createSiteAction(
   }
 }
 
-// Delete function
+// Delete site function
 export async function deleteSiteAction(id: string): Promise<boolean> {
   try {
     const res = await fetch(`/api/sites/${id}`, {
@@ -135,6 +135,31 @@ export async function createInteriorProduct(
   }
 }
 
+// Delete interior product action
+export async function deleteInteriorProductAction(
+  siteId: string,
+  productId: string
+) {
+  try {
+    const res = await fetch(`/api/sites/${siteId}/interior`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ id: productId }),
+    })
+
+    if (!res.ok) {
+      throw new Error('Failed to delete interior product')
+    }
+
+    return true
+  } catch (error) {
+    console.error('Failed to delete interior product:', error)
+    return false
+  }
+}
+
 // Create Exterior Product
 export async function createExteriorProduct(
   values: CreateProduct,
@@ -161,5 +186,30 @@ export async function createExteriorProduct(
   } catch (error) {
     console.error('Error creating exterior product:', error)
     throw error
+  }
+}
+
+// Delete exterior product action
+export async function deleteExteriorProductAction(
+  siteId: string,
+  productId: string
+) {
+  try {
+    const res = await fetch(`/api/sites/${siteId}/exterior`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ id: productId }),
+    })
+
+    if (!res.ok) {
+      throw new Error('Failed to delete exterior product')
+    }
+
+    return true
+  } catch (error) {
+    console.error('Failed to delete exterior product:', error)
+    return false
   }
 }

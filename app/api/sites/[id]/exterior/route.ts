@@ -22,3 +22,28 @@ export async function GET(
     )
   }
 }
+
+// Delete Exterior Product
+export async function DELETE(req: Request) {
+  try {
+    const { id } = await req.json()
+
+    if (!id) {
+      return NextResponse.json({ error: 'No ID provided' }, { status: 400 })
+    }
+
+    const deleteExteriorProduct = await prisma.exteriorProduct.delete({
+      where: {
+        id: id,
+      },
+    })
+
+    return NextResponse.json(deleteExteriorProduct, { status: 200 })
+  } catch (error) {
+    console.error('Error deleting site:', error)
+    return NextResponse.json(
+      { error: 'Failed to delete site' },
+      { status: 500 }
+    )
+  }
+}

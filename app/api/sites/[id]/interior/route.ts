@@ -25,26 +25,27 @@ export async function GET(
   }
 }
 
-// // Create Product
-// export async function POST(req: NextRequest) {
-//   try {
-//     const { values, siteId }: { values: CreateProduct; siteId: string } =
-//       await req.json()
-//     const product = await createInteriorProductAction(values, siteId)
+// Delete Interior Product
+export async function DELETE(req: Request) {
+  try {
+    const { id } = await req.json()
 
-//     if (product) {
-//       return NextResponse.json(product, { status: 200 })
-//     } else {
-//       return NextResponse.json(
-//         { error: 'failed to create interior product' },
-//         { status: 500 }
-//       )
-//     }
-//   } catch (error) {
-//     console.error('Error handleing request:', error)
-//     return NextResponse.json(
-//       { error: 'Failed to create interior product' },
-//       { status: 500 }
-//     )
-//   }
-// }
+    if (!id) {
+      return NextResponse.json({ error: 'No ID provided' }, { status: 400 })
+    }
+
+    const deleteInteriorProduct = await prisma.interiorProduct.delete({
+      where: {
+        id: id,
+      },
+    })
+
+    return NextResponse.json(deleteInteriorProduct, { status: 200 })
+  } catch (error) {
+    console.error('Error deleting site:', error)
+    return NextResponse.json(
+      { error: 'Failed to delete site' },
+      { status: 500 }
+    )
+  }
+}
