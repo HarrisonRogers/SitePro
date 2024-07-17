@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { CreateSite } from '@/utils/types'
 import { createSiteAction } from '@/utils/actions'
-import { Form } from './ui/form'
+import { Form, FormLabel } from './ui/form'
 import { CustomFormField } from './FormComponents'
 import { Checkbox } from './ui/checkbox'
 import { Popover, PopoverContent, PopoverTrigger } from './ui/popover'
@@ -71,12 +71,18 @@ const CreateSiteForm = () => {
         className="p-8 rounded flex flex-col justify-center items-center"
       >
         <div className="flex flex-col w-1/3 items-center justify-center space-y-4">
-          {/* Reference */}
-          <CustomFormField name="jobReference" control={form.control} />
-          {/* Owners */}
-          <CustomFormField name="owners" control={form.control} />
-          {/* Site address */}
-          <CustomFormField name="siteAddress" control={form.control} />
+          <div className="w-full flex flex-col items-start space-y-2">
+            <FormLabel className="text-left">Job Reference</FormLabel>
+            <CustomFormField name="jobReference" control={form.control} />
+          </div>
+          <div className="w-full flex flex-col items-start space-y-2">
+            <FormLabel className="text-left">Owners</FormLabel>
+            <CustomFormField name="owners" control={form.control} />
+          </div>
+          <div className="w-full flex flex-col items-start space-y-2">
+            <FormLabel className="text-left">Site Address</FormLabel>
+            <CustomFormField name="siteAddress" control={form.control} />
+          </div>
           {/* Build complete */}
           <div
             className="flex items-center space-x-2 my-4"
