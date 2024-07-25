@@ -1,5 +1,5 @@
 import prisma from '@/utils/db'
-import { CreateProduct, ExteriorProduct } from '@/utils/types'
+import { CreateProduct, ExteriorProduct, InteriorProduct } from '@/utils/types'
 import { NextRequest, NextResponse } from 'next/server'
 
 // Create Interior product function
@@ -35,7 +35,7 @@ export async function createExteriorProductAction(
     })
 
     // Convert Dates to strings and ensure all required fields are present
-    const formattedInteriorProduct: ExteriorProduct = {
+    const formattedInteriorProduct: InteriorProduct = {
       ...interiorProduct,
       maintenanceInstructions: interiorProduct.maintenanceInstructions.map(
         (instruction) => ({

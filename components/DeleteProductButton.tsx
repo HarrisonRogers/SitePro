@@ -6,7 +6,6 @@ import {
   deleteExteriorProductAction,
   deleteInteriorProductAction,
 } from '@/utils/actions'
-import { Button } from './ui/button'
 import { X } from 'lucide-react'
 import { useParams, useRouter } from 'next/navigation'
 

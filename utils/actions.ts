@@ -213,3 +213,12 @@ export async function deleteExteriorProductAction(
     return false
   }
 }
+
+// Edit product
+export async function editProductAction(
+  productId: string,
+  values: CreateProduct
+) {
+  try {
+  } catch (error) {}
+}
