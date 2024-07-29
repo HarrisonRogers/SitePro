@@ -56,7 +56,11 @@ const Interior = () => {
           {data?.map((product) => (
             <Card key={product.id} className="mb-4 bg-primary">
               <div className="absolute">
-                <DeleteProductButton type="interior" id={product.id} />
+                <DeleteProductButton
+                  type="interior"
+                  id={product.id}
+                  product={product.name}
+                />
                 <EditProductButton type="interior" id={product.id} />
               </div>
 

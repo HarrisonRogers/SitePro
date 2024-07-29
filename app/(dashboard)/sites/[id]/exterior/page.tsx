@@ -56,7 +56,11 @@ const Exterior = () => {
           {data?.map((product) => (
             <Card key={product.id} className="mb-4 bg-primary">
               <div className="absolute">
-                <DeleteProductButton type="exterior" id={product.id} />
+                <DeleteProductButton
+                  type="exterior"
+                  id={product.id}
+                  product={product.name}
+                />
                 <EditProductButton id={product.id} type="exterior" />
               </div>
 
