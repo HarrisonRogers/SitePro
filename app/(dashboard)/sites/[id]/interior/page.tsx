@@ -7,6 +7,7 @@ import { Card } from '@/components/ui/card'
 import InteriorCard from '@/components/InteriorCard'
 import AddProductButton from '@/components/AddProductButton'
 import DeleteProductButton from '@/components/DeleteProductButton'
+import EditProductButton from '@/components/EditProductButton'
 
 const fetchInteriorProducts = async (
   siteId: string
@@ -54,7 +55,11 @@ const Interior = () => {
           </div>
           {data?.map((product) => (
             <Card key={product.id} className="mb-4 bg-primary">
-              <DeleteProductButton type="interior" id={product.id} />
+              <div className="absolute">
+                <DeleteProductButton type="interior" id={product.id} />
+                <EditProductButton type="interior" id={product.id} />
+              </div>
+
               <InteriorCard product={product} />
             </Card>
           ))}

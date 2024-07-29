@@ -1,7 +1,7 @@
 import React from 'react'
 
-const editPage = () => {
-  return <div className="text-4xl">editPage</div>
+const exteriorEditPage = () => {
+  return <div className="text-4xl">exteriorEditPage</div>
 }
 
-export default editPage
+export default exteriorEditPage

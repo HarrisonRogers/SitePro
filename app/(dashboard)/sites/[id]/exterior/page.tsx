@@ -7,6 +7,7 @@ import { Card } from '@/components/ui/card'
 import ExteriorCard from '@/components/ExteriorCard'
 import AddProductButton from '@/components/AddProductButton'
 import DeleteProductButton from '@/components/DeleteProductButton'
+import EditProductButton from '@/components/EditProductButton'
 
 const fetchExteriorProducts = async (
   siteId: string
@@ -54,7 +55,11 @@ const Exterior = () => {
           </div>
           {data?.map((product) => (
             <Card key={product.id} className="mb-4 bg-primary">
-              <DeleteProductButton type="exterior" id={product.id} />
+              <div className="absolute">
+                <DeleteProductButton type="exterior" id={product.id} />
+                <EditProductButton id={product.id} type="exterior" />
+              </div>
+
               <ExteriorCard product={product} />
             </Card>
           ))}
