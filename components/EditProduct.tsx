@@ -3,23 +3,24 @@ import { editProductAction, getProductAction } from '@/utils/actions'
 import { CreateProduct } from '@/utils/types'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useParams } from 'next/navigation'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Form, FormLabel } from './ui/form'
 import { CustomFormField } from './FormComponents'
 import { Popover, PopoverContent, PopoverTrigger } from './ui/popover'
 import { Button } from './ui/button'
-import { CalendarIcon, Calendar } from 'lucide-react'
-import { format } from 'path'
+import { CalendarIcon } from 'lucide-react'
+import { format } from 'date-fns'
+import { Calendar } from './ui/calendar'
 import { useToast } from './ui/use-toast'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 
-const EditProduct = ({ type }: { type: string }) => {
+const EditProduct = ({ type }: { type: 'interior' | 'exterior' }) => {
   const { id, productId } = useParams()
 
   const { data, isLoading, error } = useQuery<CreateProduct>({
     queryKey: [`${type}Product`, productId],
-    queryFn: () => getProductAction(String(id), String(productId)),
+    queryFn: () => getProductAction(String(id), String(productId), type),
     enabled: !!productId,
   })
 
@@ -27,27 +28,32 @@ const EditProduct = ({ type }: { type: string }) => {
   const queryClient = useQueryClient()
   const { toast } = useToast()
   const router = useRouter()
-  const form = useForm<CreateProduct>({
-    defaultValues: {
-      name: data?.name,
-      supplier: data?.supplier,
-      maintenanceInstructions:
-        data?.maintenanceInstructions.map((instruction) => ({
-          actionRequired: instruction.actionRequired,
-          frequency: instruction.frequency,
-          dueOn: instruction.dueOn,
-        })) || [],
-      installers:
-        data?.installers.map((installer) => ({
-          name: installer.name,
-          contact: installer.contact,
-        })) || [],
-    },
-  })
+  const form = useForm<CreateProduct>()
+
+  useEffect(() => {
+    if (data) {
+      form.reset({
+        name: data.name,
+        supplier: data.supplier,
+        maintenanceInstructions:
+          data.maintenanceInstructions.map((instruction) => ({
+            actionRequired: instruction.actionRequired,
+            frequency: instruction.frequency,
+            dueOn: instruction.dueOn,
+          })) || [],
+        installers:
+          data.installers.map((installer) => ({
+            name: installer.name,
+            contact: installer.contact,
+          })) || [],
+      })
+      setDate(new Date(data.maintenanceInstructions[0]?.dueOn))
+    }
+  }, [data, form])
 
   const { mutate, isPending } = useMutation({
     mutationFn: (values: CreateProduct) =>
-      editProductAction(String(id), String(productId), values),
+      editProductAction(String(id), String(productId), type, values),
     onSuccess: (data) => {
       if (!data) {
         toast({ description: 'There was an error' })
@@ -58,7 +64,7 @@ const EditProduct = ({ type }: { type: string }) => {
           type.charAt(0).toUpperCase() + type.slice(1)
         } product updated`,
       })
-      queryClient.invalidateQueries({ queryKey: [`${type}Product`, productId] })
+      queryClient.invalidateQueries({ queryKey: [`${type}Products`, id] })
 
       router.push(`/sites/${id}/${type}`)
     },
@@ -76,6 +82,12 @@ const EditProduct = ({ type }: { type: string }) => {
 
     mutate(values)
   }
+
+  if (isLoading) return <div className="text-center">Loading...</div>
+  if (error)
+    return (
+      <div className="text-center">{`Error loading ${type} product data`}</div>
+    )
 
   return (
     <Form {...form}>
@@ -160,7 +172,7 @@ const EditProduct = ({ type }: { type: string }) => {
               className="capitalize mt-4"
               disabled={isPending}
             >
-              {isPending ? 'loading' : 'create product'}
+              {isPending ? 'loading' : 'update product'}
             </Button>
           </div>
         </div>

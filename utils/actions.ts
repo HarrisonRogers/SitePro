@@ -214,11 +214,15 @@ export async function deleteExteriorProductAction(
   }
 }
 
-export async function getProductAction(siteId: string, productId: string) {
+export async function getProductAction(
+  siteId: string,
+  productId: string,
+  type: 'interior' | 'exterior'
+) {
   try {
-    const res = await fetch(`/api/sites/${siteId}/exterior/${productId}`)
+    const res = await fetch(`/api/sites/${siteId}/${type}/${productId}`)
     if (!res.ok) {
-      throw new Error(`failed to fetch exterior product ${productId}`)
+      throw new Error(`failed to fetch ${type} product ${productId}`)
     }
     return res.json()
   } catch (error) {
@@ -231,10 +235,11 @@ export async function getProductAction(siteId: string, productId: string) {
 export async function editProductAction(
   siteId: string,
   productId: string,
+  type: 'interior' | 'exterior',
   values: CreateProduct
 ) {
   try {
-    const res = await fetch(`/api/sites/${siteId}/exterior/${productId}/edit`, {
+    const res = await fetch(`/api/sites/${siteId}/${type}/${productId}/edit`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
