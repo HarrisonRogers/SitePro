@@ -43,7 +43,7 @@ function SingleSiteCard({ site }: { site: Site | undefined }) {
 
   return (
     <div>
-      <DeleteSiteButton id={site?.id} />
+      <DeleteSiteButton id={site?.id} siteName={site?.jobReference} />
       <div className="flex flex-col justify-center items-center pb-2 mb-10">
         <div className="inline-block px-6 pb-2 border-b-2 border-primary">
           <h1 className="text-4xl pt-2">

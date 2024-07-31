@@ -7,7 +7,13 @@ import { Button } from './ui/button'
 import { X } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
-function DeleteSiteButton({ id }: { id: string | undefined }) {
+function DeleteSiteButton({
+  id,
+  siteName,
+}: {
+  id: string | undefined
+  siteName: string | undefined
+}) {
   const queryClient = useQueryClient()
   const { toast } = useToast()
   const router = useRouter()
@@ -25,6 +31,9 @@ function DeleteSiteButton({ id }: { id: string | undefined }) {
   })
 
   const handleDelete = (id: string | undefined) => {
+    const isConfirmed = window.confirm(
+      `Are you sure you want to delete ${siteName}`
+    )
     mutate(id)
   }
 
