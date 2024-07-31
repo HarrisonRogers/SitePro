@@ -1,7 +1,8 @@
+import EditProduct from '@/components/EditProduct'
 import React from 'react'
 
 const exteriorEditPage = () => {
-  return <div className="text-4xl">exteriorEditPage</div>
+  return <EditProduct type="exterior" />
 }
 
 export default exteriorEditPage

@@ -1,7 +1,5 @@
 import { NextResponse, NextRequest } from 'next/server'
 import prisma from '@/utils/db'
-import { CreateProduct, InteriorProduct } from '@/utils/types'
-// import { createInteriorProductAction } from '@/utils/actions'
 
 export async function GET(
   request: Request,

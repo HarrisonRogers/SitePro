@@ -214,11 +214,41 @@ export async function deleteExteriorProductAction(
   }
 }
 
+export async function getProductAction(siteId: string, productId: string) {
+  try {
+    const res = await fetch(`/api/sites/${siteId}/exterior/${productId}`)
+    if (!res.ok) {
+      throw new Error(`failed to fetch exterior product ${productId}`)
+    }
+    return res.json()
+  } catch (error) {
+    console.error('Failed to fetch exterior product', error)
+    return null
+  }
+}
+
 // Edit product
 export async function editProductAction(
+  siteId: string,
   productId: string,
   values: CreateProduct
 ) {
   try {
-  } catch (error) {}
+    const res = await fetch(`/api/sites/${siteId}/exterior/${productId}/edit`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ values, productId }),
+    })
+
+    if (!res.ok) {
+      throw new Error('Failed to edit exterior product')
+    }
+
+    return true
+  } catch (error) {
+    console.error('Failed to delete exterior product:', error)
+    return false
+  }
 }
