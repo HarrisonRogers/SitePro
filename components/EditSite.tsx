@@ -1,11 +1,11 @@
 'use client'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import React, { useEffect, useState } from 'react'
 import { useToast } from './ui/use-toast'
 import { useParams, useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { CreateSite } from '@/utils/types'
-import { createSiteAction, updateSiteAction } from '@/utils/actions'
+import { fetchSingleSite, updateSiteAction } from '@/utils/actions'
 import { Form, FormLabel } from './ui/form'
 import { CustomFormField } from './FormComponents'
 import { Checkbox } from './ui/checkbox'
@@ -22,6 +22,12 @@ const EditSite = () => {
   const { toast } = useToast()
   const router = useRouter()
   const form = useForm<CreateSite>()
+
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['singleSite', id],
+    queryFn: () => fetchSingleSite(String(id)),
+    enabled: !!id,
+  })
 
   const { mutate, isPending } = useMutation({
     mutationFn: (values: CreateSite) => updateSiteAction(String(id), values),
@@ -40,30 +46,20 @@ const EditSite = () => {
 
   // --- TODO: FETCH THE SITE DATA TO HAVE IN THE FORM AS DEFAULT VALUES
 
-  // useEffect(() => {
-  //   if (data) {
-  //     form.reset({
-  //       name: data.name,
-  //       supplier: data.supplier,
-  //       maintenanceInstructions:
-  //         data.maintenanceInstructions.map((instruction) => ({
-  //           actionRequired: instruction.actionRequired,
-  //           frequency: instruction.frequency,
-  //           dueOn: instruction.dueOn,
-  //         })) || [],
-  //       installers:
-  //         data.installers.map((installer) => ({
-  //           name: installer.name,
-  //           contact: installer.contact,
-  //         })) || [],
-  //     })
-  //     setDate(new Date(data.maintenanceInstructions[0]?.dueOn))
-  //   }
-  // }, [data, form])
+  useEffect(() => {
+    if (data) {
+      form.reset({
+        owners: data.owners,
+        jobReference: data.jobReference,
+        siteAddress: data.siteAddress,
+        buildComplete: data.buildComplete,
+        buildStart: data.buildStart,
+      })
+    }
+  }, [data, form])
 
   const onSubmit = (values: CreateSite) => {
     if (date) {
-      values.buildStart = date.toISOString()
     }
 
     const validValues: CreateSite = {
@@ -148,7 +144,7 @@ const EditSite = () => {
               className="capitalize mt-4"
               disabled={isPending}
             >
-              {isPending ? 'loading' : 'create site'}
+              {isPending ? 'loading' : 'update site'}
             </Button>
           </div>
         </div>

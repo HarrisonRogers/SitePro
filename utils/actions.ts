@@ -62,6 +62,15 @@ export async function getAllSites(): Promise<Site[]> {
   }
 }
 
+// Fetch single site
+export async function fetchSingleSite(id: string): Promise<Site> {
+  const res = await fetch(`/api/sites/${id}`)
+  if (!res.ok) {
+    throw new Error('Failed to fetch site')
+  }
+  return res.json()
+}
+
 // Create Site
 export async function createSiteAction(
   values: CreateSite
