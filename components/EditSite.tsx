@@ -1,11 +1,11 @@
 'use client'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useToast } from './ui/use-toast'
-import { useRouter } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { CreateSite } from '@/utils/types'
-import { createSiteAction } from '@/utils/actions'
+import { createSiteAction, updateSiteAction } from '@/utils/actions'
 import { Form, FormLabel } from './ui/form'
 import { CustomFormField } from './FormComponents'
 import { Checkbox } from './ui/checkbox'
@@ -15,23 +15,16 @@ import { CalendarIcon } from 'lucide-react'
 import { format } from 'date-fns'
 import { Calendar } from './ui/calendar'
 
-const CreateSiteForm = () => {
+const EditSite = () => {
+  const { id } = useParams()
   const queryClient = useQueryClient()
   const [date, setDate] = useState<Date>()
   const { toast } = useToast()
   const router = useRouter()
-  const form = useForm<CreateSite>({
-    defaultValues: {
-      jobReference: '',
-      owners: '',
-      siteAddress: '',
-      buildComplete: false,
-      buildStart: '',
-    },
-  })
+  const form = useForm<CreateSite>()
 
   const { mutate, isPending } = useMutation({
-    mutationFn: (values: CreateSite) => createSiteAction(values),
+    mutationFn: (values: CreateSite) => updateSiteAction(String(id), values),
     onSuccess: (data) => {
       if (!data) {
         toast({ description: 'there was an error' })
@@ -39,10 +32,34 @@ const CreateSiteForm = () => {
       }
       toast({ description: 'site created' })
       queryClient.invalidateQueries({ queryKey: ['sites'] })
+      queryClient.invalidateQueries({ queryKey: ['singleSite', id] })
 
-      router.push('/sites')
+      router.push(`/sites/${id}`)
     },
   })
+
+  // --- TODO: FETCH THE SITE DATA TO HAVE IN THE FORM AS DEFAULT VALUES
+
+  // useEffect(() => {
+  //   if (data) {
+  //     form.reset({
+  //       name: data.name,
+  //       supplier: data.supplier,
+  //       maintenanceInstructions:
+  //         data.maintenanceInstructions.map((instruction) => ({
+  //           actionRequired: instruction.actionRequired,
+  //           frequency: instruction.frequency,
+  //           dueOn: instruction.dueOn,
+  //         })) || [],
+  //       installers:
+  //         data.installers.map((installer) => ({
+  //           name: installer.name,
+  //           contact: installer.contact,
+  //         })) || [],
+  //     })
+  //     setDate(new Date(data.maintenanceInstructions[0]?.dueOn))
+  //   }
+  // }, [data, form])
 
   const onSubmit = (values: CreateSite) => {
     if (date) {
@@ -64,7 +81,7 @@ const CreateSiteForm = () => {
   return (
     <Form {...form}>
       <h2 className="capitalize font-semibold text-primary text-4xl mb-6 flex justify-center items-center">
-        Add Site
+        Update Site
       </h2>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
@@ -140,4 +157,4 @@ const CreateSiteForm = () => {
   )
 }
 
-export default CreateSiteForm
+export default EditSite

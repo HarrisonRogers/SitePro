@@ -87,6 +87,28 @@ export async function createSiteAction(
   }
 }
 
+// Update site
+export async function updateSiteAction(id: string, values: CreateSite) {
+  try {
+    const res = await fetch(`/api/sites/${id}/edit`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ values, id }),
+    })
+
+    if (!res.ok) {
+      throw new Error('Failed to edit site')
+    }
+
+    return true
+  } catch (error) {
+    console.error('Error editing site:', error)
+    return false
+  }
+}
+
 // Delete site function
 export async function deleteSiteAction(id: string): Promise<boolean> {
   try {
