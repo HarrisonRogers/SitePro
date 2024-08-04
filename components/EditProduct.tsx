@@ -108,6 +108,10 @@ const EditProduct = ({ type }: { type: 'interior' | 'exterior' }) => {
             <FormLabel className="text-left">Supplier</FormLabel>
             <CustomFormField name="supplier" control={form.control} />
           </div>
+          <div className="w-full flex flex-col items-start space-y-2">
+            <FormLabel className="text-left">Category</FormLabel>
+            <CustomFormField name="category" control={form.control} />
+          </div>
           <div className="border-t-2 w-full">
             <h2 className="pt-2 flex justify-center ">
               Maintenance Instructions

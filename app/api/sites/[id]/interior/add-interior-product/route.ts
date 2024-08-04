@@ -12,6 +12,7 @@ export async function createInteriorProductAction(
       data: {
         name: values.name,
         supplier: values.supplier,
+        category: values.category,
         siteId: siteId,
         maintenanceInstructions: {
           create: values.maintenanceInstructions.map((instruction) => ({

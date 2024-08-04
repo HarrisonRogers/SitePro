@@ -13,6 +13,7 @@ export async function editInteriorProduct(
       data: {
         name: values.name,
         supplier: values.supplier,
+        category: values.category,
         siteId: siteId,
         maintenanceInstructions: {
           deleteMany: {}, // Delete all existing maintenance instructions

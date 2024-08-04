@@ -13,9 +13,39 @@ import { Button } from './ui/button'
 import { CalendarIcon } from 'lucide-react'
 import { format } from 'date-fns'
 import { Calendar } from './ui/calendar'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from './ui/select'
 
 type CreateProductFormProps = {
   type: 'interior' | 'exterior'
+}
+
+const categories = {
+  interior: [
+    'Flooring',
+    'Wall Finishes',
+    'Ceiling',
+    'Lighting',
+    'Furniture',
+    'Appliances',
+    'HVAC',
+    'Plumbing Fixtures',
+  ],
+  exterior: [
+    'Roofing',
+    'Siding',
+    'Windows',
+    'Doors',
+    'Landscaping',
+    'Gutters',
+    'Outdoor Lighting',
+    'Fencing',
+  ],
 }
 
 const CreateProductForm: React.FC<CreateProductFormProps> = ({ type }) => {
@@ -29,6 +59,7 @@ const CreateProductForm: React.FC<CreateProductFormProps> = ({ type }) => {
     defaultValues: {
       name: '',
       supplier: '',
+      category: '',
       maintenanceInstructions: [
         {
           actionRequired: '',
@@ -79,6 +110,7 @@ const CreateProductForm: React.FC<CreateProductFormProps> = ({ type }) => {
     const validValues: CreateProduct = {
       name: values.name,
       supplier: values.supplier,
+      category: values.category,
       maintenanceInstructions: values.maintenanceInstructions,
       installers: values.installers,
     }
@@ -88,7 +120,7 @@ const CreateProductForm: React.FC<CreateProductFormProps> = ({ type }) => {
   return (
     <Form {...form}>
       <h2 className="capitalize font-semibold text-primary text-4xl mb-6 flex justify-center items-center">
-        Add Product
+        Add {type} Product
       </h2>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
@@ -102,6 +134,24 @@ const CreateProductForm: React.FC<CreateProductFormProps> = ({ type }) => {
           <div className="w-full flex flex-col items-start space-y-2">
             <FormLabel className="text-left">Supplier</FormLabel>
             <CustomFormField name="supplier" control={form.control} />
+          </div>
+          <div className="w-full flex flex-col items-start space-y-2">
+            <FormLabel className="text-left">Category</FormLabel>
+            <Select
+              onValueChange={(value) => form.setValue('category', value)}
+              defaultValue={form.getValues('category')}
+            >
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Select a category" />
+              </SelectTrigger>
+              <SelectContent>
+                {categories[type].map((category) => (
+                  <SelectItem key={category} value={category}>
+                    {category}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
           <div className="border-t-2 w-full">
             <h2 className="pt-2 flex justify-center ">

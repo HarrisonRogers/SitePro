@@ -16,6 +16,7 @@ export type InteriorProduct = {
   id: string
   name: string
   supplier: string
+  category: string
   siteId: string
   site: Site
   maintenanceInstructions: MaintenanceInstruction[]
@@ -26,6 +27,7 @@ export type ExteriorProduct = {
   id: string
   name: string
   supplier: string
+  category: string
   siteId: string
   site: Site
   maintenanceInstructions: MaintenanceInstruction[]
@@ -64,6 +66,7 @@ export type CreateSite = {
 export type CreateProduct = {
   name: string
   supplier: string
+  category: string
   maintenanceInstructions: CreateInstructions[]
   installers: CreateInstaller[]
 }

@@ -32,6 +32,25 @@ export async function DELETE(
 ) {
   try {
     const { id } = params
+
+    const siteExists = await prisma.site.findUnique({
+      where: { id },
+    })
+    if (!siteExists) {
+      console.log(`Site with id ${id} does not exist.`)
+      return new Error('Site does not exist')
+    }
+
+    // Delete related InteriorProducts
+    await prisma.interiorProduct.deleteMany({
+      where: { siteId: id },
+    })
+
+    // Delete related ExteriorProducts
+    await prisma.exteriorProduct.deleteMany({
+      where: { siteId: id },
+    })
+
     const deleteSite = await prisma.site.delete({
       where: {
         id: id,
@@ -40,7 +59,7 @@ export async function DELETE(
 
     return NextResponse.json(deleteSite, { status: 200 })
   } catch (error) {
-    console.error('Error deleteing site:', error)
+    console.error('Error deleting site:', error)
     return NextResponse.json(
       { error: 'Falied to delete site' },
       { status: 500 }

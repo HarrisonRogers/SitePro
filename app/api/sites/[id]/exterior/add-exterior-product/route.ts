@@ -1,17 +1,18 @@
 import prisma from '@/utils/db'
-import { CreateProduct, ExteriorProduct, InteriorProduct } from '@/utils/types'
+import { CreateProduct, ExteriorProduct } from '@/utils/types'
 import { NextRequest, NextResponse } from 'next/server'
 
-// Create Interior product function
+// Create exterior product function
 export async function createExteriorProductAction(
   values: CreateProduct,
   siteId: string
 ): Promise<ExteriorProduct | null> {
   try {
-    const interiorProduct = await prisma.exteriorProduct.create({
+    const exteriorProduct = await prisma.exteriorProduct.create({
       data: {
         name: values.name,
         supplier: values.supplier,
+        category: values.category,
         siteId: siteId,
         maintenanceInstructions: {
           create: values.maintenanceInstructions.map((instruction) => ({
@@ -35,9 +36,9 @@ export async function createExteriorProductAction(
     })
 
     // Convert Dates to strings and ensure all required fields are present
-    const formattedInteriorProduct: InteriorProduct = {
-      ...interiorProduct,
-      maintenanceInstructions: interiorProduct.maintenanceInstructions.map(
+    const formattedExteriorProduct: ExteriorProduct = {
+      ...exteriorProduct,
+      maintenanceInstructions: exteriorProduct.maintenanceInstructions.map(
         (instruction) => ({
           ...instruction,
           dueOn: instruction.dueOn.toISOString(),
@@ -45,24 +46,24 @@ export async function createExteriorProductAction(
           exteriorProductId: instruction.exteriorProductId ?? null,
         })
       ),
-      installers: interiorProduct.installers.map((installer) => ({
+      installers: exteriorProduct.installers.map((installer) => ({
         ...installer,
         interiorProducts: [],
         exteriorProducts: [],
       })),
       site: {
-        ...interiorProduct.site,
-        createdAt: interiorProduct.site.createdAt.toISOString(),
-        updatedAt: interiorProduct.site.updatedAt.toISOString(),
-        buildStart: interiorProduct.site.buildStart.toISOString(),
+        ...exteriorProduct.site,
+        createdAt: exteriorProduct.site.createdAt.toISOString(),
+        updatedAt: exteriorProduct.site.updatedAt.toISOString(),
+        buildStart: exteriorProduct.site.buildStart.toISOString(),
         interiorProducts: [],
         exteriorProducts: [],
       },
     }
 
-    return formattedInteriorProduct
+    return formattedExteriorProduct
   } catch (error) {
-    console.error('Error creating interior product:', error)
+    console.error('Error creating exterior product:', error)
     return null
   }
 }
