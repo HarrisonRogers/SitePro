@@ -20,32 +20,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from './ui/select'
+import { categories } from '@/utils/categories'
 
 type CreateProductFormProps = {
   type: 'interior' | 'exterior'
-}
-
-const categories = {
-  interior: [
-    'Flooring',
-    'Wall Finishes',
-    'Ceiling',
-    'Lighting',
-    'Furniture',
-    'Appliances',
-    'HVAC',
-    'Plumbing Fixtures',
-  ],
-  exterior: [
-    'Roofing',
-    'Siding',
-    'Windows',
-    'Doors',
-    'Landscaping',
-    'Gutters',
-    'Outdoor Lighting',
-    'Fencing',
-  ],
 }
 
 const CreateProductForm: React.FC<CreateProductFormProps> = ({ type }) => {

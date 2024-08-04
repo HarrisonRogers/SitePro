@@ -14,6 +14,14 @@ import { Calendar } from './ui/calendar'
 import { useToast } from './ui/use-toast'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from './ui/select'
+import { categories } from '@/utils/categories'
 
 const EditProduct = ({ type }: { type: 'interior' | 'exterior' }) => {
   const { id, productId } = useParams()
@@ -35,6 +43,7 @@ const EditProduct = ({ type }: { type: 'interior' | 'exterior' }) => {
       form.reset({
         name: data.name,
         supplier: data.supplier,
+        category: data.category,
         maintenanceInstructions:
           data.maintenanceInstructions.map((instruction) => ({
             actionRequired: instruction.actionRequired,
@@ -110,7 +119,21 @@ const EditProduct = ({ type }: { type: 'interior' | 'exterior' }) => {
           </div>
           <div className="w-full flex flex-col items-start space-y-2">
             <FormLabel className="text-left">Category</FormLabel>
-            <CustomFormField name="category" control={form.control} />
+            <Select
+              onValueChange={(value) => form.setValue('category', value)}
+              defaultValue={data?.category}
+            >
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Select a category" />
+              </SelectTrigger>
+              <SelectContent>
+                {categories[type].map((category) => (
+                  <SelectItem key={category} value={category}>
+                    {category}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
           <div className="border-t-2 w-full">
             <h2 className="pt-2 flex justify-center ">
