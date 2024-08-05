@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import { useParams } from 'next/navigation'
 import { useQuery } from '@tanstack/react-query'
 import { ExteriorProduct } from '@/utils/types'
@@ -8,6 +8,7 @@ import ExteriorCard from '@/components/ExteriorCard'
 import AddProductButton from '@/components/AddProductButton'
 import DeleteProductButton from '@/components/DeleteProductButton'
 import EditProductButton from '@/components/EditProductButton'
+import FilterProducts from '@/components/FilterProducts'
 
 const fetchExteriorProducts = async (
   siteId: string
@@ -21,12 +22,18 @@ const fetchExteriorProducts = async (
 
 const Exterior = () => {
   const { id } = useParams()
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
 
   const { data, isLoading, error } = useQuery<ExteriorProduct[]>({
     queryKey: ['exteriorProducts', id],
     queryFn: () => fetchExteriorProducts(id as string),
     enabled: !!id,
   })
+
+  const filteredProduct =
+    selectedCategory !== 'All Categories'
+      ? data?.filter((product) => product.category === selectedCategory)
+      : data
 
   if (isLoading) {
     return <div className="flex justify-center items-center">Loading...</div>
@@ -42,10 +49,17 @@ const Exterior = () => {
 
   return (
     <div>
-      <div className="flex justify-center items-center pb-2 mb-10">
-        <h1 className="text-6xl inline-block px-6 pb-2 border-b-2">Exterior</h1>
+      <div className="flex flex-col justify-center items-center pb-2 mb-10">
+        <h1 className="text-6xl inline-block px-6 pb-2 border-b-2 mb-5">
+          Exterior
+        </h1>
+        <FilterProducts
+          type={'exterior'}
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+        />
       </div>
-      {data && data.length > 0 ? (
+      {filteredProduct && filteredProduct.length > 0 ? (
         <div>
           <div className="grid grid-cols-4 text-2xl text-center mb-4">
             <h1>Product</h1>
@@ -53,7 +67,7 @@ const Exterior = () => {
             <h1>Installer</h1>
             <h1>Instructions</h1>
           </div>
-          {data?.map((product) => (
+          {filteredProduct?.map((product) => (
             <Card key={product.id} className="mb-4 bg-primary">
               <div className="absolute">
                 <DeleteProductButton

@@ -117,6 +117,7 @@ const CreateProductForm: React.FC<CreateProductFormProps> = ({ type }) => {
             <FormLabel className="text-left">Category</FormLabel>
             <Select
               onValueChange={(value) => form.setValue('category', value)}
+              value={form.watch('category')}
               defaultValue={form.getValues('category')}
             >
               <SelectTrigger className="w-full">
