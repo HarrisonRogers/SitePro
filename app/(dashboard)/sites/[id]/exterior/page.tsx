@@ -9,6 +9,7 @@ import AddProductButton from '@/components/AddProductButton'
 import DeleteProductButton from '@/components/DeleteProductButton'
 import EditProductButton from '@/components/EditProductButton'
 import FilterProducts from '@/components/FilterProducts'
+import { useCheckRole } from '@/utils/roles'
 
 const fetchExteriorProducts = async (
   siteId: string
@@ -22,6 +23,7 @@ const fetchExteriorProducts = async (
 
 const Exterior = () => {
   const { id } = useParams()
+  const isAdmin = useCheckRole('admin')
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
 
   const { data, isLoading, error } = useQuery<ExteriorProduct[]>({
@@ -69,14 +71,16 @@ const Exterior = () => {
           </div>
           {filteredProduct?.map((product) => (
             <Card key={product.id} className="mb-4 bg-primary">
-              <div className="absolute">
-                <DeleteProductButton
-                  type="exterior"
-                  id={product.id}
-                  product={product.name}
-                />
-                <EditProductButton id={product.id} type="exterior" />
-              </div>
+              {isAdmin ? (
+                <div className="absolute">
+                  <DeleteProductButton
+                    type="exterior"
+                    id={product.id}
+                    product={product.name}
+                  />
+                  <EditProductButton id={product.id} type="exterior" />
+                </div>
+              ) : null}
 
               <ExteriorCard product={product} />
             </Card>

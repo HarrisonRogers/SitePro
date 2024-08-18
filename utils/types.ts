@@ -81,3 +81,5 @@ export type CreateInstaller = {
   name: string
   contact: string
 }
+
+// Clerk admin

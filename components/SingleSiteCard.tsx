@@ -6,6 +6,8 @@ import { CardFooter } from './ui/card'
 import Link from 'next/link'
 import DeleteSiteButton from './DeleteSiteButton'
 import EditSiteButton from './EditSiteButton'
+import { useUser } from '@clerk/nextjs'
+import { useCheckRole } from '@/utils/roles'
 
 function openMap(address: string) {
   const isApple =
@@ -42,12 +44,17 @@ function SingleSiteCard({ site }: { site: Site | undefined }) {
     return `${day}-${month}-${year}`
   }
 
+  const isAdmin = useCheckRole('admin')
+
   return (
     <div>
-      <div>
-        <DeleteSiteButton id={site?.id} siteName={site?.jobReference} />
-        <EditSiteButton id={site?.id} />
-      </div>
+      {isAdmin ? (
+        <div>
+          <DeleteSiteButton id={site?.id} siteName={site?.jobReference} />
+          <EditSiteButton id={site?.id} />
+        </div>
+      ) : null}
+
       <div className="flex flex-col justify-center items-center pb-2 mb-10">
         <div className="inline-block px-6 pb-2 border-b-2 border-primary">
           <h1 className="text-4xl pt-2">
