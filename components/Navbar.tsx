@@ -30,7 +30,7 @@ const Navbar = () => {
       <div className="absolute left-1/2 transform -translate-x-1/2">
         {isAdmin && params === '/sites' ? (
           <Button asChild variant={'link'} className="text-l p-0">
-            <Link href={`/users`} className="text-secondary p-0">
+            <Link href={`/admin-dashboard`} className="text-secondary p-0">
               <h1>Change Users Role</h1>
             </Link>
           </Button>
