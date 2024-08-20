@@ -44,8 +44,6 @@ const EditSite = () => {
     },
   })
 
-  // --- TODO: FETCH THE SITE DATA TO HAVE IN THE FORM AS DEFAULT VALUES
-
   useEffect(() => {
     if (data) {
       form.reset({
