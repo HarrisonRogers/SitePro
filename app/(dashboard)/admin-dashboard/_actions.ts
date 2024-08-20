@@ -1,14 +1,7 @@
 'use server'
 
 import { clerkClient } from '@clerk/nextjs/server'
-import { Roles } from '@/utils/globals'
-import { auth } from '@clerk/nextjs/server'
-
-const checkRole = (role: Roles) => {
-  const { sessionClaims } = auth()
-
-  return sessionClaims?.metadata.role === role
-}
+import checkRole from './_check-role'
 
 export async function setRole(formData: FormData) {
   if (!checkRole('admin')) {
