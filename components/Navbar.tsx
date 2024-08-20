@@ -8,7 +8,7 @@ import { Button } from './ui/button'
 import { usePathname } from 'next/navigation'
 import { useRouter } from 'next/navigation'
 import { useCheckRole } from '@/utils/roles'
-import AddUserRole from './AddUserRole'
+// import AddUserRole from './AddUserRole'
 
 const Navbar = () => {
   const params = usePathname()
