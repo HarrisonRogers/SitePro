@@ -50,11 +50,15 @@ export default async function AdminDashboard({
             </div>
             {/* <div className="flex flex-col items-center md:items-start space-y-2"> */}
             <div className="text-sm font-semibold">
-              {user.publicMetadata.role !== 'admin' ? 'Not admin' : 'Admin'}
+              {user.publicMetadata.role === 'admin' ||
+              user.publicMetadata.role === 'moderator'
+                ? user.publicMetadata.role
+                : 'No Role'}
             </div>
-            {user.publicMetadata.role !== 'admin' && (
-              <MakeAdminButton userId={user.id} userName={user.firstName} />
-            )}
+            {user.publicMetadata.role !== 'moderator' &&
+              user.publicMetadata.role !== 'admin' && (
+                <MakeAdminButton userId={user.id} userName={user.firstName} />
+              )}
             {/* </div> */}
           </div>
         </Card>

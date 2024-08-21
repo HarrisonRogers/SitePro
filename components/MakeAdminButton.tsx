@@ -24,7 +24,7 @@ function MakeAdminButton({
         return
       }
       toast({
-        description: `${userName} is now admin`,
+        description: `${userName} is now a moderator`,
       })
       window.location.reload()
     },
@@ -33,7 +33,7 @@ function MakeAdminButton({
   const handleSubmit = (e: React.MouseEvent<HTMLFormElement>) => {
     e.preventDefault()
     const confirm = window.confirm(
-      `Do you want ${userName} to be admin? They will be able to make others admin and edit and delete sites and products`
+      `Do you want ${userName} to be a Moderator? They will be able to edit sites and products`
     )
     if (!confirm) {
       return
@@ -46,9 +46,9 @@ function MakeAdminButton({
   return (
     <form onSubmit={handleSubmit}>
       <input type="hidden" value={userId} name="id" />
-      <input type="hidden" value="admin" name="role" />
+      <input type="hidden" value="moderator" name="role" />
       <Button type="submit" className="bg-blue-500 hover:bg-blue-400">
-        {mutation.isPending ? 'Pending...' : 'Make Admin'}
+        {mutation.isPending ? 'Pending...' : 'Make Moderator'}
       </Button>
     </form>
   )
