@@ -28,41 +28,42 @@ export default async function AdminDashboard({
       <h1 className="text-4xl mb-8">Admin Page</h1>
       {/* --- Add Search functionality later */}
       {/* <SearchUser /> */}
-      {users.map((user) => (
-        <Card key={user.id} className="mb-8 p-6 bg-white shadow-md">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4 items-center text-center">
-            <div className="flex items-center justify-center md:justify-center">
-              <Image
-                src={user.imageUrl}
-                alt="Profile Picture"
-                width={60}
-                height={60}
-                className="rounded-full"
-              />
-            </div>
-            <div className="text-lg font-semibold">{`${user.firstName} ${user.lastName}`}</div>
-            <div className="text-sm text-gray-500">
-              {
-                user.emailAddresses.find(
-                  (email) => email.id === user.primaryEmailAddressId
-                )?.emailAddress
-              }
-            </div>
-            {/* <div className="flex flex-col items-center md:items-start space-y-2"> */}
-            <div className="text-sm font-semibold">
-              {user.publicMetadata.role === 'admin' ||
-              user.publicMetadata.role === 'moderator'
-                ? user.publicMetadata.role
-                : 'No Role'}
-            </div>
-            {user.publicMetadata.role !== 'moderator' &&
-              user.publicMetadata.role !== 'admin' && (
+      {users.map((user) => {
+        const role = user.publicMetadata.role
+        return (
+          <Card key={user.id} className="mb-8 p-6 bg-white shadow-md">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4 items-center text-center">
+              <div className="flex items-center justify-center md:justify-center">
+                <Image
+                  src={user.imageUrl}
+                  alt="Profile Picture"
+                  width={60}
+                  height={60}
+                  className="rounded-full"
+                />
+              </div>
+              <div className="text-lg font-semibold">{`${user.firstName} ${user.lastName}`}</div>
+              <div className="text-sm text-gray-500">
+                {
+                  user.emailAddresses.find(
+                    (email) => email.id === user.primaryEmailAddressId
+                  )?.emailAddress
+                }
+              </div>
+              {/* <div className="flex flex-col items-center md:items-start space-y-2"> */}
+              <div className="text-sm font-semibold">
+                {role === 'admin' || role === 'moderator'
+                  ? role.charAt(0).toUpperCase() + role.slice(1)
+                  : 'No Role'}
+              </div>
+              {role !== 'moderator' && role !== 'admin' && (
                 <MakeAdminButton userId={user.id} userName={user.firstName} />
               )}
-            {/* </div> */}
-          </div>
-        </Card>
-      ))}
+              {/* </div> */}
+            </div>
+          </Card>
+        )
+      })}
     </div>
   )
 }
