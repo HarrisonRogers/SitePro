@@ -45,12 +45,15 @@ function SingleSiteCard({ site }: { site: Site | undefined }) {
   }
 
   const isAdmin = useCheckRole('admin')
+  const isMod = useCheckRole('moderator')
 
   return (
     <div>
-      {isAdmin ? (
+      {isAdmin || isMod ? (
         <div>
-          <DeleteSiteButton id={site?.id} siteName={site?.jobReference} />
+          {!isMod ? (
+            <DeleteSiteButton id={site?.id} siteName={site?.jobReference} />
+          ) : null}
           <EditSiteButton id={site?.id} />
         </div>
       ) : null}

@@ -5,7 +5,6 @@ import { setRole } from './_actions'
 import checkRole from './_check-role'
 import Image from 'next/image'
 import { Card } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
 import MakeAdminButton from '@/components/MakeAdminButton'
 
 export default async function AdminDashboard({

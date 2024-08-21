@@ -24,6 +24,7 @@ const fetchInteriorProducts = async (
 const Interior = () => {
   const { id } = useParams()
   const isAdmin = useCheckRole('admin')
+  const isMod = useCheckRole('moderator')
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
 
   const { data, isLoading, error } = useQuery<InteriorProduct[]>({
@@ -71,13 +72,15 @@ const Interior = () => {
           </div>
           {filteredProduct?.map((product) => (
             <Card key={product.id} className="mb-4 bg-primary">
-              {isAdmin ? (
+              {isAdmin || isMod ? (
                 <div className="absolute">
-                  <DeleteProductButton
-                    type="interior"
-                    id={product.id}
-                    product={product.name}
-                  />
+                  {!isMod ? (
+                    <DeleteProductButton
+                      type="interior"
+                      id={product.id}
+                      product={product.name}
+                    />
+                  ) : null}
                   <EditProductButton type="interior" id={product.id} />
                 </div>
               ) : null}
