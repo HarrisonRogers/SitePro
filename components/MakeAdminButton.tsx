@@ -31,9 +31,12 @@ function MakeAdminButton({
   })
 
   const handleSubmit = (e: React.MouseEvent<HTMLFormElement>) => {
-    const confirm = window.confirm(`Do you want ${userName} to be admin?`)
+    e.preventDefault()
+    const confirm = window.confirm(
+      `Do you want ${userName} to be admin? They will be able to make others admin and edit and delete sites and products`
+    )
     if (!confirm) {
-      e.preventDefault()
+      return
     }
 
     const formData = new FormData(e.currentTarget)

@@ -26,7 +26,8 @@ export default async function AdminDashboard({
   return (
     <div className="text-center">
       <h1 className="text-4xl mb-8">Admin Page</h1>
-      <SearchUser />
+      {/* --- Add Search functionality later */}
+      {/* <SearchUser /> */}
       {users.map((user) => (
         <Card key={user.id} className="mb-8 p-6 bg-white shadow-md">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4 items-center text-center">
