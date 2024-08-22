@@ -8,9 +8,11 @@ import { useMutation } from '@tanstack/react-query'
 function MakeAdminButton({
   userId,
   userName,
+  userRole,
 }: {
   userId: string
   userName: string | null
+  userRole: string | null
 }) {
   const { toast } = useToast()
   const mutation = useMutation({
@@ -32,9 +34,12 @@ function MakeAdminButton({
 
   const handleSubmit = (e: React.MouseEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const confirm = window.confirm(
-      `Do you want ${userName} to be a Moderator? They will be able to edit sites and products`
-    )
+    const confirmMessage =
+      userRole === 'moderator'
+        ? `Do you want to remove ${userName}'s moderator role?`
+        : `Do you want ${userName} to be a Moderator? They will be able to edit sites and products`
+
+    const confirm = window.confirm(confirmMessage)
     if (!confirm) {
       return
     }
@@ -43,7 +48,15 @@ function MakeAdminButton({
     mutation.mutate(formData)
   }
 
-  return (
+  return userRole === 'moderator' ? (
+    <form onSubmit={handleSubmit}>
+      <input type="hidden" value={userId} name="id" />
+      <input type="hidden" value="" name="role" />
+      <Button type="submit" className="bg-red-500 hover:bg-red-400">
+        {mutation.isPending ? 'Pending...' : 'Take Permission Away'}
+      </Button>
+    </form>
+  ) : (
     <form onSubmit={handleSubmit}>
       <input type="hidden" value={userId} name="id" />
       <input type="hidden" value="moderator" name="role" />

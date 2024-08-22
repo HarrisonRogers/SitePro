@@ -55,8 +55,12 @@ export default async function AdminDashboard({
                   ? role.charAt(0).toUpperCase() + role.slice(1)
                   : 'No Role'}
               </div>
-              {role !== 'moderator' && role !== 'admin' && (
-                <MakeAdminButton userId={user.id} userName={user.firstName} />
+              {role !== 'admin' && (
+                <MakeAdminButton
+                  userId={user.id}
+                  userName={user.firstName}
+                  userRole={String(role)}
+                />
               )}
               {/* </div> */}
             </div>
