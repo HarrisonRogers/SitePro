@@ -1,18 +1,17 @@
 'use client'
 import React from 'react'
-import { UserButton } from '@clerk/nextjs'
+import { UserButton, useUser } from '@clerk/nextjs'
 import Logo from '@/app/assets/rbj-logo-white.png'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from './ui/button'
 import { usePathname } from 'next/navigation'
-import { useRouter } from 'next/navigation'
 import { useCheckRole } from '@/utils/roles'
-// import AddUserRole from './AddUserRole'
 
 const Navbar = () => {
   const params = usePathname()
   const isAdmin = useCheckRole('admin')
+  const { user } = useUser()
 
   return (
     <nav className="bg-primary py-4 sm:px-16 lg:px-24 px-4 flex items-center justify-between">
@@ -46,8 +45,14 @@ const Navbar = () => {
         ) : null}
       </div>
 
-      <div>
+      <div className="flex flex-col justify-center items-center">
         <UserButton />
+        {typeof user?.publicMetadata.role === 'string' && (
+          <p className="text-white text-center mt-2 text-sm">
+            {user.publicMetadata.role.charAt(0).toUpperCase() +
+              user.publicMetadata.role.slice(1)}
+          </p>
+        )}
       </div>
     </nav>
   )
