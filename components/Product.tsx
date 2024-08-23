@@ -26,7 +26,9 @@ const Products = ({ type }: { type: 'exterior' | 'interior' }) => {
   const { id } = useParams()
   const isAdmin = useCheckRole('admin')
   const isMod = useCheckRole('moderator')
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(
+    'All Categories'
+  )
 
   const { data, isLoading, error } = useQuery<ExteriorProduct[]>({
     queryKey: [`${type}Products`, id],

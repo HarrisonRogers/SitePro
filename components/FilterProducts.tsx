@@ -17,11 +17,6 @@ const FilterProducts = ({
   selectedCategory: string | null
   setSelectedCategory: React.Dispatch<React.SetStateAction<string | null>>
 }) => {
-  useEffect(() => {
-    if (!selectedCategory) {
-      setSelectedCategory('All Categories')
-    }
-  }, [selectedCategory, setSelectedCategory])
   return (
     <div>
       <Select
