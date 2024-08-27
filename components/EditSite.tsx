@@ -13,7 +13,6 @@ import { Popover, PopoverContent, PopoverTrigger } from './ui/popover'
 import { Button } from './ui/button'
 import { CalendarIcon } from 'lucide-react'
 import { format } from 'date-fns'
-import { Calendar } from './ui/calendar'
 import { CalendarRaw } from './Calendar-raw'
 
 const EditSite = () => {
@@ -75,6 +74,17 @@ const EditSite = () => {
   }
 
   const buildComplete = form.watch('buildComplete')
+
+  if (isLoading) {
+    return <h1 className="text-center text-black text-4xl">Loading...</h1>
+  }
+  if (error) {
+    return (
+      <h1 className="text-center text-black text-4xl">
+        Failed to load site data
+      </h1>
+    )
+  }
 
   return (
     <Form {...form}>
