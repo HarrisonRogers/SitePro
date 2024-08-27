@@ -13,7 +13,6 @@ import { Popover, PopoverContent, PopoverTrigger } from './ui/popover'
 import { Button } from './ui/button'
 import { CalendarIcon } from 'lucide-react'
 import { format } from 'date-fns'
-import { Calendar } from './ui/calendar'
 import { CalendarRaw } from './Calendar-raw'
 
 const CreateSiteForm = () => {
