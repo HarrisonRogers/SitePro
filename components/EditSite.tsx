@@ -36,7 +36,7 @@ const EditSite = () => {
         toast({ description: 'there was an error' })
         return
       }
-      toast({ description: 'site created' })
+      toast({ description: 'site updated' })
       queryClient.invalidateQueries({ queryKey: ['sites'] })
       queryClient.invalidateQueries({ queryKey: ['singleSite', id] })
 
@@ -124,7 +124,7 @@ const EditSite = () => {
                 }`}
               >
                 <CalendarIcon className="mr-2 h-4 w-4" />
-                {date ? format(date, 'PPP') : <span>Build Start</span>}
+                {format(String(data?.buildStart), 'PPP')}
               </Button>
             </PopoverTrigger>
             <PopoverContent className="w-auto p-0">
