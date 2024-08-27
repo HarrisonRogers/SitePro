@@ -14,6 +14,7 @@ import { Button } from './ui/button'
 import { CalendarIcon } from 'lucide-react'
 import { format } from 'date-fns'
 import { Calendar } from './ui/calendar'
+import { CalendarRaw } from './Calendar-raw'
 
 const CreateSiteForm = () => {
   const queryClient = useQueryClient()
@@ -117,10 +118,13 @@ const CreateSiteForm = () => {
               </Button>
             </PopoverTrigger>
             <PopoverContent className="w-auto p-0">
-              <Calendar
+              <CalendarRaw
                 mode="single"
+                captionLayout="dropdown-buttons"
                 selected={date}
                 onSelect={setDate}
+                fromYear={2000}
+                toYear={2050}
                 initialFocus
               />
             </PopoverContent>
