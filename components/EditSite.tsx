@@ -14,11 +14,11 @@ import { Button } from './ui/button'
 import { CalendarIcon } from 'lucide-react'
 import { format } from 'date-fns'
 import { Calendar } from './ui/calendar'
+import { CalendarRaw } from './Calendar-raw'
 
 const EditSite = () => {
   const { id } = useParams()
   const queryClient = useQueryClient()
-  const [date, setDate] = useState<Date>()
   const { toast } = useToast()
   const router = useRouter()
   const form = useForm<CreateSite>()
@@ -28,6 +28,10 @@ const EditSite = () => {
     queryFn: () => fetchSingleSite(String(id)),
     enabled: !!id,
   })
+
+  const [date, setDate] = useState<Date | undefined>(
+    data?.buildStart ? new Date(data.buildStart) : undefined
+  )
 
   const { mutate, isPending } = useMutation({
     mutationFn: (values: CreateSite) => updateSiteAction(String(id), values),
@@ -65,7 +69,7 @@ const EditSite = () => {
       owners: values.owners,
       siteAddress: values.siteAddress,
       buildComplete: values.buildComplete,
-      buildStart: values.buildStart,
+      buildStart: date ? date.toISOString() : values.buildStart,
     }
     mutate(validValues)
   }
@@ -115,6 +119,7 @@ const EditSite = () => {
             </label>
             {/* Build start */}
           </div>
+
           <Popover>
             <PopoverTrigger asChild>
               <Button
@@ -124,18 +129,28 @@ const EditSite = () => {
                 }`}
               >
                 <CalendarIcon className="mr-2 h-4 w-4" />
-                {format(String(data?.buildStart), 'PPP')}
+                {date
+                  ? format(date, 'PPP')
+                  : data?.buildStart
+                  ? format(new Date(data.buildStart), 'PPP')
+                  : 'Build Start'}
               </Button>
             </PopoverTrigger>
             <PopoverContent className="w-auto p-0">
-              <Calendar
+              <CalendarRaw
                 mode="single"
+                captionLayout="dropdown-buttons"
                 selected={date}
                 onSelect={setDate}
-                initialFocus
+                fromYear={2000}
+                toYear={2050}
+                defaultMonth={
+                  data?.buildStart ? new Date(data.buildStart) : undefined
+                }
               />
             </PopoverContent>
           </Popover>
+
           <div className="mt-4">
             <Button
               type="submit"
