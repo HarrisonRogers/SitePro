@@ -51,7 +51,7 @@ export default async function AdminDashboard({
               </div>
               {/* <div className="flex flex-col items-center md:items-start space-y-2"> */}
               <div className="text-sm font-semibold">
-                {role === 'admin' || role === 'moderator'
+                {role === 'admin' || role === 'moderator' || role === 'client'
                   ? role.charAt(0).toUpperCase() + role.slice(1)
                   : 'No Role'}
               </div>

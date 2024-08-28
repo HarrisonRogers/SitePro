@@ -51,7 +51,7 @@ function MakeAdminButton({
   return userRole === 'moderator' ? (
     <form onSubmit={handleSubmit}>
       <input type="hidden" value={userId} name="id" />
-      <input type="hidden" value="" name="role" />
+      <input type="hidden" value="client" name="role" />
       <Button type="submit" className="bg-red-500 hover:bg-red-400">
         {mutation.isPending ? 'Pending...' : 'Take Permission Away'}
       </Button>
