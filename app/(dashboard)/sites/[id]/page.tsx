@@ -5,6 +5,7 @@ import { useQuery } from '@tanstack/react-query'
 import SingleSiteCard from '@/components/SingleSiteCard'
 import { Card } from '@/components/ui/card'
 import { fetchSingleSite } from '@/utils/actions'
+import AssignToHouse from '@/components/AssignToHouse'
 
 const SitePage = () => {
   const params = useParams()
@@ -31,6 +32,7 @@ const SitePage = () => {
       <Card>
         <SingleSiteCard site={data} />
       </Card>
+      <AssignToHouse />
     </div>
   )
 }

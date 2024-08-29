@@ -5,7 +5,6 @@ import {
   dehydrate,
   QueryClient,
 } from '@tanstack/react-query'
-import { useCheckRole } from '@/utils/roles'
 
 const sites = () => {
   const queryClient = new QueryClient()

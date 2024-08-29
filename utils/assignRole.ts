@@ -1,7 +1,7 @@
 import { clerkClient } from '@clerk/nextjs/server'
 import { auth } from '@clerk/nextjs/server'
 
-export async function assogmRoleOnSignUp() {
+export async function assignRoleOnSignUp() {
   const { userId } = auth()
 
   if (userId) {
