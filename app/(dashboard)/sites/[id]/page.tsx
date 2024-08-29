@@ -32,7 +32,7 @@ const SitePage = () => {
       <Card>
         <SingleSiteCard site={data} />
       </Card>
-      <AssignToHouse />
+      <AssignToHouse siteId={String(id)} />
     </div>
   )
 }

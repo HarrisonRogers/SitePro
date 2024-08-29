@@ -288,3 +288,17 @@ export async function editProductAction(
     return false
   }
 }
+
+// Get Users
+export async function fetchUsersAction(siteId: string) {
+  try {
+    const res = await fetch(`/api/sites/${siteId}/users`)
+    if (!res.ok) {
+      throw new Error('failed to fetch users')
+    }
+    return res.json()
+  } catch (error) {
+    console.error('Failed to fetch exterior product', error)
+    return null
+  }
+}
