@@ -3,7 +3,7 @@ import { Button } from './ui/button'
 import { clerkClient, User } from '@clerk/nextjs/server'
 
 const AssignToHouse = () => {
-  const [users, setUsers] = useState<User[]>([])
+  const [users, setUsers] = useState([])
 
   return (
     <div className="flex justify-center items-center mt-6">
