@@ -18,6 +18,16 @@ model Site {
   buildComplete    Boolean
   exteriorProducts ExteriorProduct[]
   interiorProducts InteriorProduct[]
+  userSites        UserSite[]        @relation("SiteToUserSite")
+}
+
+model UserSite {
+  id     String @id @default(uuid())
+  userId String
+  siteId String
+  site   Site   @relation(fields: [siteId], references: [id], onDelete: Cascade, onUpdate: Cascade, name: "SiteToUserSite")
+
+  @@unique([userId, siteId])
 }
 
 model InteriorProduct {
