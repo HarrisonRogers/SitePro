@@ -30,7 +30,7 @@ const AssignToHouse = ({ siteId }: { siteId: string }) => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {users.map((user: User) => (
           <Card key={user.id} className="mb-8 p-6 bg-white shadow-md">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 items-center text-center">
+            <div className="grid grid-cols-1 gap-4 items-center text-center">
               <div className="flex items-center justify-center md:justify-center">
                 <Image
                   src={user.imageUrl}
@@ -51,13 +51,15 @@ const AssignToHouse = ({ siteId }: { siteId: string }) => {
                   )?.emailAddress
                 }
               </div>
+              <div>
+                <Button className="bg-blue-500 hover:bg-blue-400 ">
+                  Assign To Property
+                </Button>
+              </div>
             </div>
           </Card>
         ))}
       </div>
-      <Button className="bg-blue-500 hover:bg-blue-400">
-        Assign To Property
-      </Button>
     </div>
   )
 }

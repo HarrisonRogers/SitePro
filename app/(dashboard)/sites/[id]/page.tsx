@@ -32,6 +32,13 @@ const SitePage = () => {
       <Card>
         <SingleSiteCard site={data} />
       </Card>
+      <div className="mt-20 flex flex-col items-center justify-center">
+        <div className="inline-block px-6 pb-2 border-b-2 border-gray-100">
+          <h1 className="text-3xl text-black text-center">
+            Assign User to House
+          </h1>
+        </div>
+      </div>
       <AssignToHouse siteId={String(id)} />
     </div>
   )
