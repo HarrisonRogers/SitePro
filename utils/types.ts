@@ -1,4 +1,11 @@
 // Site action
+export type UserSite = {
+  id: string
+  userId: string
+  siteId: string
+  site: Site
+}
+
 export type Site = {
   id: string
   createdAt: string // Change to string if you convert dates to ISO strings
@@ -10,6 +17,7 @@ export type Site = {
   buildComplete: boolean
   interiorProducts: InteriorProduct[]
   exteriorProducts: ExteriorProduct[]
+  userSites: UserSite[]
 }
 
 export type InteriorProduct = {

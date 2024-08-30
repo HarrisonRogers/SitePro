@@ -302,3 +302,27 @@ export async function fetchUsersAction(siteId: string) {
     return null
   }
 }
+
+// AssignUserToHouse
+export async function assignUserToHouseAction(userId: string, siteId: string) {
+  try {
+    const res = await fetch(`/api/sites/${siteId}/users`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ userId, siteId }),
+    })
+
+    if (!res.ok) {
+      throw new Error('Failed to assign user to site')
+    }
+
+    const data = await res.json()
+    console.log(data)
+    return data
+  } catch (error) {
+    console.error('Error assigning user to site:', error)
+    throw error
+  }
+}

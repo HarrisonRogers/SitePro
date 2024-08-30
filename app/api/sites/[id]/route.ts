@@ -10,6 +10,9 @@ export async function GET(
   try {
     const singleSite = await prisma.site.findUnique({
       where: { id: id },
+      include: {
+        userSites: true,
+      },
     })
 
     if (!singleSite) {

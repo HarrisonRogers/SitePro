@@ -39,7 +39,7 @@ const SitePage = () => {
           </h1>
         </div>
       </div>
-      <AssignToHouse siteId={String(id)} />
+      <AssignToHouse siteId={String(id)} siteRef={String(data?.jobReference)} />
     </div>
   )
 }

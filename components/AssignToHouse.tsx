@@ -5,8 +5,15 @@ import { fetchUsersAction } from '@/utils/actions'
 import { Card } from './ui/card'
 import { User } from '@clerk/nextjs/server'
 import Image from 'next/image'
+import AssignUserToHouseButton from './AssignUserToHouseButton'
 
-const AssignToHouse = ({ siteId }: { siteId: string }) => {
+const AssignToHouse = ({
+  siteId,
+  siteRef,
+}: {
+  siteId: string
+  siteRef: string
+}) => {
   const { data, isLoading, error } = useQuery({
     queryKey: ['users', siteId],
     queryFn: () => fetchUsersAction(String(siteId)),
@@ -14,12 +21,12 @@ const AssignToHouse = ({ siteId }: { siteId: string }) => {
   })
 
   if (isLoading) {
-    return <div className="text-4xl text-black text-center">Loading...</div>
+    return <div className="text-xl text-black text-center">Loading...</div>
   }
 
   if (error) {
     return (
-      <div className="text-4xl text-black text-center">Error loading users</div>
+      <div className="text-xl text-black text-center">Error loading users</div>
     )
   }
 
@@ -52,9 +59,12 @@ const AssignToHouse = ({ siteId }: { siteId: string }) => {
                 }
               </div>
               <div>
-                <Button className="bg-blue-500 hover:bg-blue-400 ">
-                  Assign To Property
-                </Button>
+                <AssignUserToHouseButton
+                  userId={user.id}
+                  userName={user.firstName}
+                  siteId={siteId}
+                  siteRef={siteRef}
+                />
               </div>
             </div>
           </Card>
