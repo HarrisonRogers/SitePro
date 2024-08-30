@@ -37,14 +37,10 @@ const Sites = () => {
   }
 
   const userId = user.user?.id
-  const userSiteId = data?.map((site) =>
-    site.userSites.map((user) => user.userId)
-  )
 
   const assignedSites = data?.filter((site) =>
     site.userSites.some((userSite) => userSite.userId === userId)
   )
-
   const sitesToDisplay = isClient ? assignedSites : data
 
   // Check if user has assigned site
