@@ -46,6 +46,7 @@ const SitePage = () => {
           <AssignToHouse
             siteId={String(id)}
             siteRef={String(data?.jobReference)}
+            siteUsers={data?.userSites}
           />
         </>
       ) : null}

@@ -327,3 +327,25 @@ export async function assignUserToHouseAction(userId: string, siteId: string) {
     throw error
   }
 }
+
+// Unassign user to house
+export async function unassignUserFromSiteAction(
+  siteId: string,
+  userId: string
+) {
+  try {
+    const res = await fetch(`/api/sites/${siteId}/users/${userId}`, {
+      method: 'DELETE',
+    })
+
+    if (!res.ok) {
+      throw new Error('Failed to unassign user from site')
+    }
+
+    const data = await res.json()
+    return data
+  } catch (error) {
+    console.error('Error unassigning user from site', error)
+    throw error
+  }
+}
