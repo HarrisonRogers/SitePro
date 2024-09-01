@@ -26,6 +26,7 @@ const Products = ({ type }: { type: 'exterior' | 'interior' }) => {
   const { id } = useParams()
   const isAdmin = useCheckRole('admin')
   const isMod = useCheckRole('moderator')
+  const isClient = useCheckRole('client')
   const [selectedCategory, setSelectedCategory] = useState<string | null>(
     'All Categories'
   )
@@ -92,12 +93,16 @@ const Products = ({ type }: { type: 'exterior' | 'interior' }) => {
               <ExteriorCard product={product} />
             </Card>
           ))}
-          <AddProductButton />
+          {isAdmin || isMod ? <AddProductButton /> : null}
         </div>
       ) : (
-        <h3 className="text-center">
-          <AddProductButton />
-        </h3>
+        <div>
+          {isAdmin || isMod ? (
+            <h3 className="text-center">
+              <AddProductButton />
+            </h3>
+          ) : null}
+        </div>
       )}
     </div>
   )

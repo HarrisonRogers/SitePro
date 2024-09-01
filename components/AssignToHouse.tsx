@@ -56,7 +56,9 @@ const AssignToHouse = ({
                     className="rounded-full"
                   />
                 </div>
-                <div className="text-lg font-semibold">{`${user.firstName} ${user.lastName}`}</div>
+                <div className="text-lg font-semibold">
+                  {user.firstName} {user.lastName === '' ? '' : user.lastName}
+                </div>
                 <div
                   className="text-sm text-gray-500 overflow-x-auto whitespace-nowrap scrollbar-hide"
                   style={{ maxWidth: '100%' }}
