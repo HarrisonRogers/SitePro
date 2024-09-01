@@ -22,6 +22,7 @@ import {
   SelectValue,
 } from './ui/select'
 import { categories } from '@/utils/categories'
+import { CalendarRaw } from './Calendar-raw'
 
 const EditProduct = ({ type }: { type: 'interior' | 'exterior' }) => {
   const { id, productId } = useParams()
@@ -169,10 +170,13 @@ const EditProduct = ({ type }: { type: 'interior' | 'exterior' }) => {
               </Button>
             </PopoverTrigger>
             <PopoverContent className="w-auto p-0">
-              <Calendar
+              <CalendarRaw
                 mode="single"
+                captionLayout="dropdown-buttons"
                 selected={date}
                 onSelect={setDate}
+                fromYear={2000}
+                toYear={2050}
                 initialFocus
               />
             </PopoverContent>
