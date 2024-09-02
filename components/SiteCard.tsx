@@ -27,10 +27,18 @@ const SiteCard = ({ site }: { site: Site }) => {
         <Button
           asChild
           variant={'link'}
-          className="text-2xl flex justify-start w-0 p-0"
+          className="text-2xl flex justify-start  p-0"
         >
-          <Link href={`sites/${site.id}`} className="truncate w-full">
-            <CardTitle className="capitalize">{site.jobReference}</CardTitle>
+          <Link href={`sites/${site.id}`} className="w-full">
+            <CardTitle
+              className={
+                site.jobReference.length > 20
+                  ? 'lg:text-xl md:text-lg sm:text-base text-sm capitalize'
+                  : 'capitalize'
+              }
+            >
+              {site.jobReference}
+            </CardTitle>
           </Link>
         </Button>
       </CardHeader>
