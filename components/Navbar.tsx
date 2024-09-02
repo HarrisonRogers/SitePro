@@ -13,7 +13,8 @@ const Navbar = () => {
   const isAdmin = useCheckRole('admin')
   const { user } = useUser()
 
-  console.log(user?.publicMetadata.role)
+  const logoSize =
+    typeof window !== 'undefined' && window.innerWidth > 650 ? 100 : 150
 
   return (
     <nav className="bg-primary py-4 sm:px-16 lg:px-24 px-4 flex items-center justify-between">
@@ -23,8 +24,8 @@ const Navbar = () => {
             src={Logo}
             alt="RBJ Logo"
             className="mx-auto"
-            width={150}
-            height={150}
+            width={logoSize}
+            height={logoSize}
           />
         </Link>
       </div>
