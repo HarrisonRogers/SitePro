@@ -18,7 +18,7 @@ const fetchSites = async (): Promise<Site[]> => {
 
 const Sites = () => {
   const isClient = useCheckRole('client')
-  const user = useUser()
+  const { user } = useUser()
   const { data, isLoading, error } = useQuery<Site[]>({
     queryKey: ['sites'],
     queryFn: fetchSites,
@@ -36,7 +36,7 @@ const Sites = () => {
     )
   }
 
-  const userId = user.user?.id
+  const userId = user?.id
 
   const assignedSites = data?.filter((site) =>
     site.userSites.some((userSite) => userSite.userId === userId)
@@ -46,7 +46,8 @@ const Sites = () => {
   // Check if user has assigned site
   const hasAssignedSite = assignedSites && assignedSites.length > 0
 
-  return isClient && !hasAssignedSite ? (
+  return (isClient && !hasAssignedSite) ||
+    user?.publicMetadata.role === undefined ? (
     <div>
       <h1 className="text-4xl flex justify-center mb-6">
         Waiting To Be Assigned Site...

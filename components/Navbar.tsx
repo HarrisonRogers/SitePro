@@ -13,6 +13,8 @@ const Navbar = () => {
   const isAdmin = useCheckRole('admin')
   const { user } = useUser()
 
+  console.log(user?.publicMetadata.role)
+
   return (
     <nav className="bg-primary py-4 sm:px-16 lg:px-24 px-4 flex items-center justify-between">
       <div className="flex items-center">

@@ -1,13 +1,12 @@
-import React, { PropsWithChildren, useEffect, useState } from 'react'
+import React, { PropsWithChildren } from 'react'
 import Navbar from '@/components/Navbar'
 import BackButton from '@/components/BackButton'
-import { assignRoleOnSignUp } from '@/utils/assignRole'
+import RoleAssignment from '@/components/RoleAssignment'
 
-const layout = ({ children }: PropsWithChildren) => {
-  assignRoleOnSignUp()
-
+const Layout = ({ children }: PropsWithChildren) => {
   return (
     <main className="bg-background">
+      <RoleAssignment />
       <div>
         <Navbar />
       </div>
@@ -19,4 +18,4 @@ const layout = ({ children }: PropsWithChildren) => {
   )
 }
 
-export default layout
+export default Layout
