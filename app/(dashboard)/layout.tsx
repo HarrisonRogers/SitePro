@@ -6,6 +6,7 @@ import RoleAssignment from '@/components/RoleAssignment'
 const Layout = ({ children }: PropsWithChildren) => {
   return (
     <main className="bg-background">
+      {/* Hidden component */}
       <RoleAssignment />
       <div>
         <Navbar />
