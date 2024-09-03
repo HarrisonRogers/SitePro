@@ -104,7 +104,7 @@ const CreateProductForm: React.FC<CreateProductFormProps> = ({ type }) => {
         onSubmit={form.handleSubmit(onSubmit)}
         className="p-8 rounded flex flex-col justify-center items-center"
       >
-        <div className="flex flex-col w-1/3 items-center justify-center space-y-4">
+        <div className="flex flex-col w-full sm:w-full md:w-full lg:w-1/2 items-start sm:items-center justify-start sm:justify-center space-y-4">
           <div className="w-full flex flex-col items-start space-y-2">
             <FormLabel className="text-left">Product Name</FormLabel>
             <CustomFormField name="name" control={form.control} />
