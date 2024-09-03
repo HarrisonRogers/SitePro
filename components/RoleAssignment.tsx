@@ -20,7 +20,6 @@ const RoleAssignment = () => {
           }
 
           const data = await res.json()
-          console.log(data.message)
 
           await user?.reload()
         } catch (error) {

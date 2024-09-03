@@ -1,12 +1,5 @@
 import React from 'react'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
+import { CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Check, X } from 'lucide-react'
 import { Button } from './ui/button'
 import Link from 'next/link'
@@ -23,28 +16,18 @@ const SiteCard = ({ site }: { site: Site }) => {
 
   return (
     <div className="flex flex-col justify-center items-center text-center h-full">
-      <CardHeader>
-        <Button
-          asChild
-          variant={'link'}
-          className="text-2xl flex justify-start  p-0"
-        >
+      <CardHeader className="w-full">
+        <Button asChild variant={'link'} className="p-0 h-auto">
           <Link href={`sites/${site.id}`} className="w-full">
-            <CardTitle
-              className={
-                site.jobReference.length > 20
-                  ? 'lg:text-xl md:text-lg sm:text-base text-sm capitalize'
-                  : 'capitalize'
-              }
-            >
+            <CardTitle className="text-lg sm:text-xl md:text-2xl capitalize line-clamp-2 hover:line-clamp-none">
               {site.jobReference}
             </CardTitle>
           </Link>
         </Button>
       </CardHeader>
-      <CardContent>
-        <p className="capitalize">Owners: {site.owners}</p>
-        <p>
+      <CardContent className="w-full">
+        <p className="capitalize truncate">Owners: {site.owners}</p>
+        <p className="truncate">
           Build Start: {site.buildStart ? formatDate(site?.buildStart) : 'N/A'}
         </p>
         <p>
