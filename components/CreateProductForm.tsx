@@ -73,6 +73,13 @@ const CreateProductForm: React.FC<CreateProductFormProps> = ({ type }) => {
 
       router.push(`/sites/${id}/${type}`)
     },
+    onError: () => {
+      toast({
+        description:
+          'There was an error OR you have not filled in all the fields',
+        variant: 'destructive',
+      })
+    },
   })
 
   const onSubmit = (values: CreateProduct) => {

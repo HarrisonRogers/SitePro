@@ -34,7 +34,11 @@ const CreateSiteForm = () => {
     mutationFn: (values: CreateSite) => createSiteAction(values),
     onSuccess: (data) => {
       if (!data) {
-        toast({ description: 'there was an error' })
+        toast({
+          variant: 'destructive',
+          description:
+            'there was an error OR you have not filled in all the fields',
+        })
         return
       }
       toast({ description: 'site created' })
