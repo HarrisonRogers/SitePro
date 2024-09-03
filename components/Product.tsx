@@ -4,12 +4,12 @@ import { useParams } from 'next/navigation'
 import { useQuery } from '@tanstack/react-query'
 import { ExteriorProduct } from '@/utils/types'
 import { Card } from '@/components/ui/card'
-import ExteriorCard from '@/components/ExteriorCard'
 import AddProductButton from '@/components/AddProductButton'
 import DeleteProductButton from '@/components/DeleteProductButton'
 import EditProductButton from '@/components/EditProductButton'
 import FilterProducts from '@/components/FilterProducts'
 import { useCheckRole } from '@/utils/roles'
+import ProductCard from '@/components/ProductCard'
 
 const fetchProducts = async (
   siteId: string,
@@ -68,29 +68,28 @@ const Products = ({ type }: { type: 'exterior' | 'interior' }) => {
       </div>
       {filteredProduct && filteredProduct.length > 0 ? (
         <div>
-          <div className="grid grid-cols-4 text-2xl text-center mb-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 text-lg md:text-2xl text-center mb-4">
             <h1>Product</h1>
-            <h1>Supplier</h1>
-            <h1>Installer</h1>
+            <h1 className="hidden md:block">Supplier</h1>
+            <h1 className="hidden md:block">Installer</h1>
             <h1>Instructions</h1>
           </div>
           {filteredProduct?.map((product) => (
-            <Card key={product.id} className="mb-4 bg-primary">
+            <Card key={product.id} className="mb-4 bg-primary relative">
               {isAdmin || isMod ? (
-                <div className="absolute">
-                  {!isMod ? (
+                <div className="absolute top-0 left-0 flex flex-col p-1 md:p-2 space-y-5 space-x-0 md:space-y-3 md:space-x-0">
+                  {!isMod && (
                     <DeleteProductButton
                       type={type}
                       id={product.id}
                       product={product.name}
                     />
-                  ) : null}
-
+                  )}
                   <EditProductButton id={product.id} type={type} />
                 </div>
               ) : null}
 
-              <ExteriorCard product={product} />
+              <ProductCard product={product} />
             </Card>
           ))}
           {isAdmin || isMod ? <AddProductButton /> : null}

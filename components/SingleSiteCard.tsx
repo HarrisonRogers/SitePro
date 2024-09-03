@@ -60,13 +60,13 @@ function SingleSiteCard({ site }: { site: Site | undefined }) {
 
       <div className="flex flex-col justify-center items-center pb-2 mb-10">
         <div className="inline-block px-6 pb-2 border-b-2 border-primary">
-          <h1 className="text-4xl pt-2">
+          <h1 className="text-4xl pt-2 text-center">
             {site?.jobReference || 'No available site reference'}
           </h1>
         </div>
         <p className="text-gray-500 text-sm pt-2">{site?.owners}</p>
       </div>
-      <div className="grid grid-cols-3 text-center pb-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 text-center pb-4">
         <p className="border-r-2 flex justify-center items-center">
           Build Complete:{' '}
           {site?.buildComplete ? (

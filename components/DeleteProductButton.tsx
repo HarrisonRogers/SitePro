@@ -53,7 +53,7 @@ const DeleteProductButton: React.FC<DeleteProductProps> = ({
     <div>
       <X
         onClick={() => handleDelete(id)}
-        className="text-red-500 cursor-pointer mt-1 ml-1"
+        className="text-red-400 hover:text-red-500 cursor-pointer w-5 h-5 sm:w-6 sm:h-6"
       />
     </div>
   )

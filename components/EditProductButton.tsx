@@ -9,9 +9,9 @@ const EditProductButton = ({ id, type }: { id: string; type: string }) => {
         href={
           type == 'exterior' ? `exterior/${id}/edit` : `interior/${id}/edit`
         }
-        className="text-white"
+        className="text-white hover:text-gray-300"
       >
-        <Pencil className="ml-1 mt-4 w-5 " />
+        <Pencil className="w-4 h-4 sm:w-5 sm:h-5" />
       </Link>
     </div>
   )
