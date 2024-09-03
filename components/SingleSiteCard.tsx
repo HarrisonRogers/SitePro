@@ -6,7 +6,6 @@ import { CardFooter } from './ui/card'
 import Link from 'next/link'
 import DeleteSiteButton from './DeleteSiteButton'
 import EditSiteButton from './EditSiteButton'
-import { useUser } from '@clerk/nextjs'
 import { useCheckRole } from '@/utils/roles'
 
 function openMap(address: string) {
@@ -48,17 +47,21 @@ function SingleSiteCard({ site }: { site: Site | undefined }) {
   const isMod = useCheckRole('moderator')
 
   return (
-    <div>
+    <div className="relative">
       {isAdmin || isMod ? (
-        <div>
-          {!isMod ? (
-            <DeleteSiteButton id={site?.id} siteName={site?.jobReference} />
-          ) : null}
-          <EditSiteButton id={site?.id} />
-        </div>
+        <>
+          {!isMod && (
+            <div className="absolute top-2 left-2">
+              <DeleteSiteButton id={site?.id} siteName={site?.jobReference} />
+            </div>
+          )}
+          <div className="absolute top-2 right-2">
+            <EditSiteButton id={site?.id} />
+          </div>
+        </>
       ) : null}
 
-      <div className="flex flex-col justify-center items-center pb-2 mb-10">
+      <div className="flex flex-col justify-center items-center pb-2 mb-10 pt-14">
         <div className="inline-block px-6 pb-2 border-b-2 border-primary">
           <h1 className="text-4xl pt-2 text-center">
             {site?.jobReference || 'No available site reference'}

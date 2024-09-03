@@ -38,11 +38,13 @@ function DeleteSiteButton({
   }
 
   return (
-    <div className="p-2 pb-0">
-      <Button variant={'destructive'} onClick={() => handleDelete(id)}>
-        <X />
-      </Button>
-    </div>
+    <Button
+      className="sm:p-2 p-1"
+      variant={'destructive'}
+      onClick={() => handleDelete(id)}
+    >
+      <X className="w-8 h-5 sm:w-10 sm:h-5" />
+    </Button>
   )
 }
 
