@@ -15,20 +15,20 @@ const AddProductButton = () => {
       {path !== `/sites/${id}/exterior` ? (
         <div className="text-center">
           <Link href={`/sites/${id}/interior/add-interior-product`}>
-            <Button className="w-16 h-16 rounded-full bg-green-500 hover:bg-green-600 mt-4">
+            <Button className="w-16 h-16 rounded-full bg-green-500 hover:bg-green-600 mt-2">
               <Plus />
             </Button>
           </Link>
-          <h1 className="mt-4 mb-4 text-2xl">Add Interior Product</h1>
+          <h1 className="mt-2 mb-2 text-2xl">Add Interior Product</h1>
         </div>
       ) : (
         <div className="text-center">
           <Link href={`/sites/${id}/exterior/add-exterior-product`}>
-            <Button className="w-16 h-16 rounded-full bg-green-500 hover:bg-green-600 mt-4">
+            <Button className="w-16 h-16 rounded-full bg-green-500 hover:bg-green-600 mt-2">
               <Plus />
             </Button>
           </Link>
-          <h1 className="mt-4 mb-4 text-2xl">Add Exterior Product</h1>
+          <h1 className="mt-2 mb-2 text-2xl">Add Exterior Product</h1>
         </div>
       )}
     </Card>

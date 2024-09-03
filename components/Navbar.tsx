@@ -28,7 +28,7 @@ const Navbar = () => {
       </div>
       <div className="absolute left-1/2 transform -translate-x-1/2">
         {isAdmin && params === '/sites' ? (
-          <Button asChild variant={'link'} className="text-l p-0">
+          <Button asChild variant={'link'} className="text-xs sm:text-2xl p-0">
             <Link href={`/admin-dashboard`} className="text-secondary p-0">
               <h1>Change Users Role</h1>
             </Link>
@@ -36,7 +36,11 @@ const Navbar = () => {
         ) : null}
         {params !== '/sites' ? (
           <div>
-            <Button asChild variant={'link'} className="text-2xl p-0">
+            <Button
+              asChild
+              variant={'link'}
+              className="text-xs sm:text-2xl p-0"
+            >
               <Link href={`/sites`} className="text-secondary p-0">
                 <h1>Back to Sites</h1>
               </Link>
