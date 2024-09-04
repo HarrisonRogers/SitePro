@@ -320,7 +320,6 @@ export async function assignUserToHouseAction(userId: string, siteId: string) {
     }
 
     const data = await res.json()
-    console.log(data)
     return data
   } catch (error) {
     console.error('Error assigning user to site:', error)

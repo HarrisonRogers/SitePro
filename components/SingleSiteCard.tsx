@@ -62,8 +62,8 @@ function SingleSiteCard({ site }: { site: Site | undefined }) {
       ) : null}
 
       <div className="flex flex-col justify-center items-center pb-2 mb-10 pt-14">
-        <div className="inline-block px-6 pb-2 border-b-2 border-primary">
-          <h1 className="text-4xl pt-2 text-center">
+        <div className="inline-block px-6 pb-2 border-b-2 border-gray-200">
+          <h1 className="text-4xl pt-2 text-center font-bold">
             {site?.jobReference || 'No available site reference'}
           </h1>
         </div>
@@ -100,6 +100,19 @@ function SingleSiteCard({ site }: { site: Site | undefined }) {
           )}
         </p>
       </div>
+      <div className="flex justify-center items-center space-x-8 text-sm mt-4">
+        <p>
+          {site?.interiorProducts.length === 0 || !site?.interiorProducts
+            ? 'No interior products'
+            : `Interior Products: ${site?.interiorProducts.length}`}
+        </p>
+        <p>
+          {site?.exteriorProducts.length === 0 || !site?.exteriorProducts
+            ? 'No exterior products'
+            : `Exterior Products: ${site?.exteriorProducts.length}`}
+        </p>
+      </div>
+
       <CardFooter className="mt-6 flex justify-center">
         <Button asChild className="mr-16">
           <Link href={`/sites/${site?.id}/interior`}>Interior</Link>

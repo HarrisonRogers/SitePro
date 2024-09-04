@@ -12,6 +12,8 @@ export async function GET(
       where: { id: id },
       include: {
         userSites: true,
+        interiorProducts: true,
+        exteriorProducts: true,
       },
     })
 
